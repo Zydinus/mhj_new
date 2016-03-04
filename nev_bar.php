@@ -10,15 +10,14 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="home.php"><?php echo $s_project_name;?></a>
+      <a class="navbar-brand" href="home.php"><?= s2("project_name")?></a>
     </div>
 
     <div class="navbar-collapse collapse navbar-responsive-collapse">
 
       <ul class="nav navbar-nav">
-        <li><a href="home.php">Home</a></li>
-        <li><a href="sale.php">Sale</a></li>
-        <li><a href="shipping.php">Shipping</a></li>
+        <li><a href="home.php"><?= s2("home")?></a></li>
+        <li><a href="sale.php"><?= s2("sale_system")?></a></li>
         <?php if ( getUserLevel()==0 ) { ?>
         <li><a href="admin.php">Admin</a></li>
         <?php } ?>
@@ -29,14 +28,14 @@
           <?php if ( !isSignin() ) { ?>
             <a href="sign_in_form.php">
               <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
-              <?php echo $s_sign_in;?>
+              <?= s2("sign_in")?>
             </a>
           <?php } else { ?>
             <a href="control_sign_out.php">
               <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-              <?php echo getUserEmail();?> |
+              <?= getUserEmail() ?> |
               <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
-              <?php echo $s_sign_out;?>
+              <?= s2("sign_out") ?>
             </a>
           <?php } ?>
 

@@ -1,9 +1,10 @@
 <?php
-$s_title = "หมงฮวดจั่น";
-$s_project_name = "MHJ";
-$s_sign_in = "เข้าสู่ระบบ";
-$s_sign_out = "ออกจากระบบ";
-$s_cancel = "ยกเลิก";
-$s_email = "Email";
-$s_password = "Password";
+define("JSON_FILE", file_get_contents("include/string.json"));
+
+function s2($key) {
+  $locale = "th";
+  $json_string = json_decode(JSON_FILE, true);
+
+  return $json_string[$key][$locale];
+}
 ?>

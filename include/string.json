@@ -1,0 +1,12 @@
+{
+  "title":{"en":"MHJ","th":"หมงฮวดจั่น"},
+  "project_name":{"en":"MHJ","th":"หมงฮวดจั่น"},
+  "sign_in":{"en":"sign in","th":"เข้าสู่ระบบ"},
+  "sign_out":{"en":"sign out","th":"ออกจากระบบ"},
+  "cancel":{"en":"cancel","th":"ยกเลิก"},
+  "email":{"en":"email","th":"อีเมล์"},
+  "username":{"en":"username","th":"ชื่อผู้ใช้"},
+  "password":{"en":"password","th":"รหัสผ่าน"},
+  "sale_system":{"en":"Sale System","th":"ระบบขาย"},
+  "home":{"en":"Home","th":"หน้าแรก"}
+}

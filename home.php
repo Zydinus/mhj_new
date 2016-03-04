@@ -15,6 +15,7 @@
     <?php include "include/include_body.php" ?>
     <div class="container">
       <h1>Hello, world!</h1>
+      <h1><?= s2("title"); ?></h1>
     </div>
 
     <!--  nev bar -->
