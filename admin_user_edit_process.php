@@ -6,27 +6,37 @@
 ?>
 <?php
   // define variables and set to empty values
-  $inputName = $inputUsername = $inputEmail = $inputPassword = $optionsPermission = "";
+  $inputId = $inputName = $inputUsername = $inputEmail = $inputPassword = $optionsPermission = $source = "";
 
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $inputId = testInput($_POST["inputIdEdit"]);
     $inputName = testInput($_POST["inputName"]);
     $inputUsername = testInput($_POST["inputUsername"]);
     $inputEmail = testInput($_POST["inputEmail"]);
     $inputPassword = testInput($_POST["inputPassword"]);
     $optionsPermission = testInput($_POST["optionsPermission"]);
+    $source = testInput($_POST["source"]);
   }
 
-  $sql = "INSERT INTO users (name, username, email, password, level, created_at, updated_at)
-          VALUES ('$inputName', '$inputUsername', '$inputEmail', '$inputPassword', $_POST[optionsPermission], now(), now() )";
+  $sql = "UPDATE users
+          SET name='$inputName',
+            username='$inputUsername',
+            email='$inputEmail',
+            password='$inputPassword',
+            level='$optionsPermission',
+            updated_at=now()
+          WHERE id=$inputId;";
 
   // echo $sql;
   if ($conn->query($sql) === TRUE) {
-    header("Location: admin_users_view.php?success=true&command=add");
+    header("Location: $source?success=true&command=edit");
     die();
   } else {
       // echo "Error: " . $sql . "<br>" . $conn->error;
     if ( strrpos($conn->error, "Duplicate") !== false ) {
-      header("Location: admin_users_view.php?success=false&command=add&reason=duplicate");
+      // echo "Duplicate";
+      header("Location: $source?success=false&command=edit&reason=duplicate");
+      die();
     } else {
       echo $conn->error;
     }

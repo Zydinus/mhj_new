@@ -14,7 +14,7 @@
 <body>
   <?php include "include/include_body.php" ?>
   <div class="container">
-    <h1><?php echo $s_title; ?></h1>
+    <h1><?= s2("title") ?></h1>
     <?php
       $users = getUsers($conn);
       $normal_users = getUsers($conn,'normal');
@@ -26,7 +26,7 @@
       <div class="col-lg-6">
         <div class="panel panel-info">
           <div class="panel-heading">
-            <h3 class="panel-title">Admin User</h3>
+            <h3 class="panel-title">Admin Users</h3>
           </div>
           <div class="panel-body">
 
@@ -34,6 +34,7 @@
               <thead>
                 <tr>
                   <th>name</th>
+                  <th>username</th>
                   <th>email</th>
                   <th>password</th>
                 </tr>
@@ -43,6 +44,7 @@
                 for ($i=0; $i < count($admin_users); $i++) {
                   echo "<tr>";
                   echo "<td>".$admin_users[$i]["name"]."</td>";
+                  echo "<td>".$admin_users[$i]["username"]."</td>";
                   echo "<td>".$admin_users[$i]["email"]."</td>";
                   echo "<td>".$admin_users[$i]["password"]."</td>";
                   echo "</tr>";
@@ -61,7 +63,7 @@
       <div class="col-lg-6">
         <div class="panel panel-info">
           <div class="panel-heading">
-            <h3 class="panel-title">Normal User</h3>
+            <h3 class="panel-title">Normal Users</h3>
           </div>
           <div class="panel-body">
 
@@ -69,6 +71,7 @@
               <thead>
                 <tr>
                   <th>name</th>
+                  <th>username</th>
                   <th>email</th>
                   <th>password</th>
                 </tr>
@@ -78,6 +81,7 @@
                 for ($i=0; $i < count($normal_users); $i++) {
                   echo "<tr>";
                   echo "<td>".$normal_users[$i]["name"]."</td>";
+                  echo "<td>".$admin_users[$i]["username"]."</td>";
                   echo "<td>".$normal_users[$i]["email"]."</td>";
                   echo "<td>".$normal_users[$i]["password"]."</td>";
                   echo "</tr>";
@@ -96,7 +100,7 @@
       <div class="col-lg-6">
         <div class="panel panel-info">
           <div class="panel-heading">
-            <h3 class="panel-title">Item</h3>
+            <h3 class="panel-title">Products</h3>
           </div>
           <div class="panel-body">
             active: <br/>

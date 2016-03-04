@@ -1,4 +1,11 @@
 <?php
+  function testInput($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+  }
+
   function getUsers($conn, $option='all') {
     $users = [];
 

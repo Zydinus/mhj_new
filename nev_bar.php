@@ -33,7 +33,7 @@
           <?php } else { ?>
             <a href="control_sign_out.php">
               <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-              <?= getUserEmail() ?> |
+              (<?= getUserUsername() ?>) <?= getUserEmail() ?> |
               <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
               <?= s2("sign_out") ?>
             </a>

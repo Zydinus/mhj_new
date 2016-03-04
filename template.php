@@ -8,7 +8,7 @@
   <head>
     <?php include 'include/include_head.php'; ?>
 
-    <title><?php echo $s_title; ?></title>
+    <title><?= s2("title") ?></title>
 
   </head>
   <body>

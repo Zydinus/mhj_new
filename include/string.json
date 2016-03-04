@@ -8,5 +8,8 @@
   "username":{"en":"username","th":"ชื่อผู้ใช้"},
   "password":{"en":"password","th":"รหัสผ่าน"},
   "sale_system":{"en":"Sale System","th":"ระบบขาย"},
-  "home":{"en":"Home","th":"หน้าแรก"}
+  "home":{"en":"Home","th":"หน้าแรก"},
+  "or":{"en":"or","th":"หรือ"},
+  "miss_match_token_or_password":{"en":"miss match token or password","th":"ชื่อผู้ใช้ หรือรหัสผ่าน ไม่ถูกต้อง"}
+
 }
