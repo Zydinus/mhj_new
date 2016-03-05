@@ -4,6 +4,7 @@
   "sign_in":{"en":"sign in","th":"เข้าสู่ระบบ"},
   "sign_out":{"en":"sign out","th":"ออกจากระบบ"},
   "cancel":{"en":"cancel","th":"ยกเลิก"},
+  "add":{"en":"add","th":"เพิ่ม"},
   "email":{"en":"email","th":"อีเมล์"},
   "username":{"en":"username","th":"ชื่อผู้ใช้"},
   "password":{"en":"password","th":"รหัสผ่าน"},
@@ -13,6 +14,7 @@
   "miss_match_token_or_password":{"en":"miss match token or password","th":"ชื่อผู้ใช้ หรือรหัสผ่าน ไม่ถูกต้อง"},
   "user_dashboard":{"en":"User Dashboard","th":"User Dashboard"},
   "product_dashboard":{"en":"Product Dashboard","th":"Product Dashboard"},
-  "product_add":{"en":"Add Product","th":"เพิ่มสินค้า"}
+  "product_add":{"en":"Add Product","th":"เพิ่มสินค้า"},
+  "product_edit":{"en":"Edit Product","th":"แก้ไขสินค้า"}
 
 }
