@@ -82,40 +82,43 @@
     $products = [];
 
     $sql = "SELECT
-                p.category_id,
-                p.id,
-                p.short_name,
-                p.custom_id,
-                p.name,
-                p.unit,
-                p.weight,
-                psp.price sale_price,
-                psp.created_at sale_price_updated_at,
-                pbp.price buy_price,
-                pbp.created_at buy_price_updated_at
-            FROM
-                products p
-                    LEFT JOIN
-                product_sale_prices psp ON p.id = psp.product_id
-                    LEFT JOIN
-                product_buy_prices pbp ON pbp.product_id
-            WHERE
-                psp.created_at IN (SELECT
-                        MAX(psp.created_at)
+                p.*,
+                (SELECT
+                        price
                     FROM
                         product_sale_prices psp
-                    GROUP BY psp.product_id)
-                    AND pbp.created_at IN (SELECT
-                        MAX(pbp.created_at)
+                    WHERE
+                        psp.product_id = p.id
+                    HAVING MAX(created_at)) sale_price,
+                (SELECT
+                        created_at
+                    FROM
+                        product_sale_prices psp
+                    WHERE
+                        psp.product_id = p.id
+                    HAVING MAX(created_at)) sale_price_updated_at,
+                (SELECT
+                        price
                     FROM
                         product_buy_prices pbp
-                    GROUP BY pbp.product_id)
+                    WHERE
+                        pbp.product_id = p.id
+                    HAVING MAX(created_at)) buy_price,
+                (SELECT
+                        created_at
+                    FROM
+                        product_buy_prices pbp
+                    WHERE
+                        pbp.product_id = p.id
+                    HAVING MAX(created_at)) buy_price_updated_at
+            FROM
+                products p
             ";
 
     if ($option==='all') {
       $sql .= "";
     } else {
-      $sql .= " AND category_id = $option";
+      $sql .= " WHERE p.category_id = $option";
     }
 
     $result = $conn->query($sql);
