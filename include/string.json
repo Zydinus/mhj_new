@@ -10,6 +10,9 @@
   "sale_system":{"en":"Sale System","th":"ระบบขาย"},
   "home":{"en":"Home","th":"หน้าแรก"},
   "or":{"en":"or","th":"หรือ"},
-  "miss_match_token_or_password":{"en":"miss match token or password","th":"ชื่อผู้ใช้ หรือรหัสผ่าน ไม่ถูกต้อง"}
+  "miss_match_token_or_password":{"en":"miss match token or password","th":"ชื่อผู้ใช้ หรือรหัสผ่าน ไม่ถูกต้อง"},
+  "user_dashboard":{"en":"User Dashboard","th":"User Dashboard"},
+  "product_dashboard":{"en":"Product Dashboard","th":"Product Dashboard"},
+  "product_add":{"en":"Add Product","th":"เพิ่มสินค้า"}
 
 }

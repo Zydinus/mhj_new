@@ -8,14 +8,14 @@
 <html lang="en">
 <head>
   <?php include "include/include_head.php" ?>
-  <title>Admin</title>
+  <title><?= s2("user_dashboard"); ?></title>
 
 </head>
 <body>
   <?php include "include/include_body.php" ?>
   <div class="container">
     <h1>
-      User
+      <?= s2("user_dashboard"); ?>
       <button type="button" class="btn btn-raised btn-info" data-toggle="modal" data-target="#addUserModal">Add User</a>
     </h1>
     <?php

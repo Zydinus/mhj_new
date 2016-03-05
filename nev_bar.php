@@ -1,3 +1,8 @@
+<?php
+function nevbarItem($destination, $glyphicon, $text) {
+  return "<li><a href=\"$destination\"><span class=\"glyphicon $glyphicon\" aria-hidden=\"true\"></span> $text</a></li>";
+}
+?>
 <div class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
 
@@ -16,10 +21,20 @@
     <div class="navbar-collapse collapse navbar-responsive-collapse">
 
       <ul class="nav navbar-nav">
-        <li><a href="home.php"><?= s2("home")?></a></li>
-        <li><a href="sale.php"><?= s2("sale_system")?></a></li>
+        <?= nevbarItem("home.php", "glyphicon-home", s2("home")) ?>
+        <?= nevbarItem("sale.php", "glyphicon-send", s2("sale_system")) ?>
         <?php if ( getUserLevel()==0 ) { ?>
-        <li><a href="admin.php">Admin</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span> Admin <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <?= nevbarItem("admin.php", "glyphicon-cog", "Admin") ?>
+            <li role="separator" class="divider"></li>
+            <?= nevbarItem("admin_products_view.php", "glyphicon-asterisk", s2("product_dashboard")) ?>
+            <?= nevbarItem("admin_users_view.php", "glyphicon-user", s2("user_dashboard")) ?>
+          </ul>
+        </li>
         <?php } ?>
       </ul>
 
