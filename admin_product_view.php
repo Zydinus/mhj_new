@@ -106,6 +106,52 @@
         <h3>Buy Price</h3>
         <div id="buy_chart_div"></div>
       </div>
+
+      <div class="row">
+        <div class="col-lg-6">
+          <h3>Sale price table</h3>
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>date</th>
+                <th>price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              foreach ($product_sale_prices as $sale_prices) {
+                echo "<tr>";
+                echo "<td>".$sale_prices["created_at"]."</td>";
+                echo "<td>".$sale_prices["price"]."</td>";
+                echo "</tr>";
+              }
+              ?>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="col-lg-6">
+          <h3>Buy price table</h3>
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>date</th>
+                <th>price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              foreach ($product_buy_prices as $buy_prices) {
+                echo "<tr>";
+                echo "<td>".$buy_prices["created_at"]."</td>";
+                echo "<td>".$buy_prices["price"]."</td>";
+                echo "</tr>";
+              }
+              ?>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
 
     <!--  nev bar -->
