@@ -40,9 +40,22 @@
     $productCategories = [];
 
     if ($option==='all') {
-      $sql = "SELECT * FROM product_categories";
+      $sql = "SELECT
+                  pc.*, COUNT(p.id) product_count
+              FROM
+                  product_categories pc
+                      INNER JOIN
+                  products p ON pc.id = p.category_id
+              GROUP BY pc.id";
     } else {
-      $sql = "SELECT * FROM product_categories WHERE id = $option";
+      $sql = "SELECT
+                  pc.*, COUNT(p.id) product_count
+              FROM
+                  product_categories pc
+                      INNER JOIN
+                  products p ON pc.id = p.category_id
+              GROUP BY pc.id
+              WHERE id = $option";
     }
 
     $result = $conn->query($sql);
@@ -170,5 +183,42 @@
       }
     }
     return $price;
+  }
+
+  function getPricesByProductId($conn, $id, $type) {
+    $prices = [];
+
+    if ($type==="sale") {
+      $sql = "SELECT * FROM product_sale_prices WHERE product_id=$id";
+    } elseif ($type==="buy") {
+      $sql = "SELECT * FROM product_buy_prices WHERE product_id=$id";
+    }
+
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+      // output data of each row
+      while($row = $result->fetch_assoc()) {
+          // echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
+          $prices[] = $row;
+      }
+    }
+    return $prices;
+  }
+
+  function getProductById($conn, $id) {
+
+    $sql = "SELECT p.*, pc.name category_name
+            FROM products p INNER JOIN product_categories pc on p.category_id=pc.id
+            WHERE p.id=$id";
+
+    $result = $conn->query($sql);
+    if ($result->num_rows == 1) {
+      // output data of each row
+      while($row = $result->fetch_assoc()) {
+          // echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
+          $product = $row;
+      }
+    }
+    return $product;
   }
 ?>

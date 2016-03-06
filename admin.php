@@ -30,7 +30,7 @@
           </div>
           <div class="panel-body">
 
-            <table class="table table-striped">
+            <table class="table table-striped table-hover">
               <thead>
                 <tr>
                   <th>name</th>
@@ -54,7 +54,7 @@
             </table>
 
           </div>
-          <div class="panel-footer text-right table-hover">
+          <div class="panel-footer text-right">
             <a href="admin_users_view.php" class="btn btn-info">View</a>
           </div>
         </div>
@@ -67,7 +67,7 @@
           </div>
           <div class="panel-body">
 
-            <table class="table table-striped">
+            <table class="table table-striped table-hover">
               <thead>
                 <tr>
                   <th>name</th>
@@ -81,7 +81,7 @@
                 for ($i=0; $i < count($normal_users); $i++) {
                   echo "<tr>";
                   echo "<td>".$normal_users[$i]["name"]."</td>";
-                  echo "<td>".$admin_users[$i]["username"]."</td>";
+                  echo "<td>".$normal_users[$i]["username"]."</td>";
                   echo "<td>".$normal_users[$i]["email"]."</td>";
                   echo "<td>".$normal_users[$i]["password"]."</td>";
                   echo "</tr>";
@@ -91,7 +91,7 @@
             </table>
 
           </div>
-          <div class="panel-footer text-right table-hover">
+          <div class="panel-footer text-right">
             <a href="admin_users_view.php" class="btn btn-info">View</a>
           </div>
         </div>
@@ -100,14 +100,20 @@
       <div class="col-lg-6">
         <div class="panel panel-info">
           <div class="panel-heading">
-            <h3 class="panel-title">Products</h3>
+            <h3 class="panel-title">Products by Category</h3>
           </div>
           <div class="panel-body">
-            active: <br/>
-            inactive:
+            <?php
+            $categories = getProductCategories($conn);
+
+            foreach ($categories as $category) {
+              echo "<p>$category[name]: $category[product_count]</p>";
+            }
+            ?>
+
           </div>
           <div class="panel-footer text-right">
-            view | add
+            <a href="admin_products_view.php" class="btn btn-info">View</a>
           </div>
         </div>
       </div>
