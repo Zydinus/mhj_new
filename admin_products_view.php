@@ -49,6 +49,15 @@
           return $button;
         }
 
+        function makePriceEditButton($id, $name, $type) {
+          $button = "<button type='button' class='btn btn-warning btn-xs' ";
+          $button .= "onclick='javascript:editPrice($id,\"$type\",\"$name\")'>";
+          $button .= "<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>";
+          $button .= "</button>";
+
+          return $button;
+        }
+
         function makeProductDeleteButton($product) {
           $button = "<button type='button' class='btn btn-danger' ";
           $button .= "onclick='javascript:deleteProduct($product[id])'>";
@@ -130,10 +139,12 @@
                     echo "<td>".$product["short_name"]."</td>";
                     echo "<td>".$product["unit"]."</td>";
                     echo "<td class='text-right'>".$product["weight"]."</td>";
-                    echo "<td class='text-right'>".$product["sale_price"]."</td>";
-                    echo "<td>".$product["sale_price_updated_at"]."</td>";
-                    echo "<td class='text-right'>".$product["buy_price"]."</td>";
-                    echo "<td>".$product["buy_price_updated_at"]."</td>";
+                    echo "<td class='text-right'><span id=\"p$product[id]SalePrice\">".$product["sale_price"]."</span>";
+                    echo " ".makePriceEditButton($product["id"],$product["name"],"sale")."</td>";
+                    echo "<td><span id=\"p$product[id]SaleDate\">".$product["sale_price_updated_at"]."</span></td>";
+                    echo "<td class='text-right'><span id=\"p$product[id]BuyPrice\">".$product["buy_price"]."</span>";
+                    echo " ".makePriceEditButton($product["id"],$product["name"],"buy")."</td>";
+                    echo "<td><span id=\"p$product[id]BuyDate\">".$product["buy_price_updated_at"]."</span></td>";
                     echo "<td>";
                     echo makeProductByIdButton($product)." ";
                     echo makeProductEditButton($product)." ";
@@ -353,6 +364,51 @@
           window.location = "admin_product_delete_process.php?id="+id;
         }
 
+      }
+
+      function editPrice(id, type, productName) {
+        var price = prompt("New price for "+productName);
+
+        if (price===null || price==="") {
+          return;
+        }
+
+        if (isNaN(parseFloat(price))) {
+          alert(price + " is invalid.");
+          return;
+        }
+
+        // ajax
+        // alert(price);
+        var jqxhr = $.ajax({
+            method: "POST",
+            url: "admin_product_price_add_process.php",
+            data: {
+              inputProductId: id,
+              inputPrice: price ,
+              inputPriceType: type
+            }
+          })
+          .done(function(data) {
+            // alert( "success" );
+            console.log(data);
+
+            if (data.result===false) {
+              return;
+            }
+
+            // update display data
+            if (type==="sale") {
+              $("#p"+id+"SalePrice").html(data.price.price);
+              $("#p"+id+"SaleDate").html(data.price.created_at);
+            } else if (type==="buy") {
+              $("#p"+id+"BuyPrice").html(data.price.price);
+              $("#p"+id+"BuyDate").html(data.price.created_at);
+            }
+          })
+          .fail(function() {
+            alert( "error" );
+          });
       }
     </script>
 
