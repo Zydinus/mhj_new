@@ -89,28 +89,48 @@
                         product_sale_prices psp
                     WHERE
                         psp.product_id = p.id
-                    HAVING MAX(created_at)) sale_price,
+                            AND psp.created_at IN (SELECT
+                                MAX(psp2.created_at)
+                            FROM
+                                product_sale_prices psp2
+                            WHERE
+                                psp2.product_id = p.id)) sale_price,
                 (SELECT
                         created_at
                     FROM
                         product_sale_prices psp
                     WHERE
                         psp.product_id = p.id
-                    HAVING MAX(created_at)) sale_price_updated_at,
+                            AND psp.created_at IN (SELECT
+                                MAX(psp2.created_at)
+                            FROM
+                                product_sale_prices psp2
+                            WHERE
+                                psp2.product_id = p.id)) sale_price_updated_at,
                 (SELECT
                         price
                     FROM
                         product_buy_prices pbp
                     WHERE
                         pbp.product_id = p.id
-                    HAVING MAX(created_at)) buy_price,
+                            AND pbp.created_at IN (SELECT
+                                MAX(pbp2.created_at)
+                            FROM
+                                product_buy_prices pbp2
+                            WHERE
+                                pbp2.product_id = p.id)) buy_price,
                 (SELECT
                         created_at
                     FROM
                         product_buy_prices pbp
                     WHERE
                         pbp.product_id = p.id
-                    HAVING MAX(created_at)) buy_price_updated_at
+                            AND pbp.created_at IN (SELECT
+                                MAX(pbp2.created_at)
+                            FROM
+                                product_buy_prices pbp2
+                            WHERE
+                                pbp2.product_id = p.id)) buy_price_updated_at
             FROM
                 products p
             ";
@@ -131,5 +151,24 @@
     }
 
     return $products;
+  }
+
+  function getPriceById($conn, $id, $type) {
+
+    if ($type==="sale") {
+      $sql = "SELECT * FROM product_sale_prices WHERE id=$id";
+    } elseif ($type==="buy") {
+      $sql = "SELECT * FROM product_buy_prices WHERE id=$id";
+    }
+
+    $result = $conn->query($sql);
+    if ($result->num_rows == 1) {
+      // output data of each row
+      while($row = $result->fetch_assoc()) {
+          // echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
+          $price = $row;
+      }
+    }
+    return $price;
   }
 ?>
