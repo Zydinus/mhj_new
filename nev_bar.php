@@ -22,7 +22,7 @@ function nevbarItem($destination, $glyphicon, $text) {
 
       <ul class="nav navbar-nav">
         <?= nevbarItem("home.php", "glyphicon-home", s2("home")) ?>
-        <?= nevbarItem("sale.php", "glyphicon-send", s2("sale_system")) ?>
+        <?= nevbarItem("sale_start.php", "glyphicon-send", s2("sale_system")) ?>
         <?php if ( getUserLevel()==0 ) { ?>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -31,6 +31,7 @@ function nevbarItem($destination, $glyphicon, $text) {
           <ul class="dropdown-menu">
             <?= nevbarItem("admin.php", "glyphicon-cog", "Admin") ?>
             <li role="separator" class="divider"></li>
+            <?= nevbarItem("admin_customers_view.php", "glyphicon-user", s2("customer_dashboard")) ?>
             <?= nevbarItem("admin_products_view.php", "glyphicon-asterisk", s2("product_dashboard")) ?>
             <?= nevbarItem("admin_users_view.php", "glyphicon-user", s2("user_dashboard")) ?>
           </ul>
@@ -39,22 +40,29 @@ function nevbarItem($destination, $glyphicon, $text) {
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li>
-          <?php if ( !isSignin() ) { ?>
-            <a href="sign_in_form.php">
-              <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
-              <?= s2("sign_in")?>
-            </a>
-          <?php } else { ?>
-            <a href="control_sign_out.php">
+
+        <?php if ( !isSignin() ) { ?>
+          <li>
+          <a href="sign_in_form.php">
+            <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
+            <?= s2("sign_in")?>
+          </a>
+          </li>
+        <?php } else { ?>
+          <li>
+            <p class="navbar-text">
               <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-              (<?= getUserUsername() ?>) <?= getUserEmail() ?> |
+              (<?= getUserUsername() ?>) <?= getUserEmail() ?>
+            </p>
+          </li>
+          <li>
+            <a href="control_sign_out.php" class="navbar-link">
               <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
               <?= s2("sign_out") ?>
             </a>
-          <?php } ?>
+          </li>
+        <?php } ?>
 
-        </li>
       </ul>
 
     </div>
