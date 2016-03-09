@@ -6,8 +6,12 @@
 ?>
 <?php
   $product = getProductById($conn, $_GET["id"]);
-  $product_sale_prices = getPricesByProductId($conn, $_GET["id"], "sale");
-  $product_buy_prices = getPricesByProductId($conn, $_GET["id"], "buy");
+  $product_sale_prices_1 = getPricesByProductIdLevel($conn, $_GET["id"], "sale", 1);
+  $product_sale_prices_2 = getPricesByProductIdLevel($conn, $_GET["id"], "sale", 2);
+  $product_sale_prices_3 = getPricesByProductIdLevel($conn, $_GET["id"], "sale", 3);
+  $product_buy_prices_1 = getPricesByProductIdLevel($conn, $_GET["id"], "buy", 1);
+  $product_buy_prices_2 = getPricesByProductIdLevel($conn, $_GET["id"], "buy", 2);
+  $product_buy_prices_3 = getPricesByProductIdLevel($conn, $_GET["id"], "buy", 3);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,45 +23,129 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawSaleChart);
-      google.charts.setOnLoadCallback(drawBuyChart);
+      google.charts.setOnLoadCallback(drawSale1Chart);
+      google.charts.setOnLoadCallback(drawSale2Chart);
+      google.charts.setOnLoadCallback(drawSale3Chart);
+      google.charts.setOnLoadCallback(drawBuy1Chart);
+      google.charts.setOnLoadCallback(drawBuy2Chart);
+      google.charts.setOnLoadCallback(drawBuy3Chart);
 
-      function drawSaleChart() {
+      function drawSale1Chart() {
         var data = google.visualization.arrayToDataTable([
-          ['Date', 'Sale price'],
+          ['Date', 'Sale price 1'],
           <?php
-          foreach ($product_sale_prices as $sale_price) {
+          foreach ($product_sale_prices_1 as $sale_price) {
             echo "['$sale_price[created_at]',$sale_price[price]],";
           }
           ?>
         ]);
 
         var options = {
-          title: 'Sale Price',
+          title: 'Sale Price 1',
           legend: { position: 'right' }
         };
 
-        var saleChart = new google.visualization.LineChart(document.getElementById('sale_chart_div'));
+        var saleChart = new google.visualization.LineChart(document.getElementById('sale_1_chart_div'));
 
         saleChart.draw(data, options);
       }
 
-      function drawBuyChart() {
+      function drawSale2Chart() {
         var data = google.visualization.arrayToDataTable([
-          ['Date', 'Buy price'],
+          ['Date', 'Sale price 2'],
           <?php
-          foreach ($product_buy_prices as $buy_price) {
+          foreach ($product_sale_prices_2 as $sale_price) {
+            echo "['$sale_price[created_at]',$sale_price[price]],";
+          }
+          ?>
+        ]);
+
+        var options = {
+          title: 'Sale Price 2',
+          legend: { position: 'right' }
+        };
+
+        var saleChart = new google.visualization.LineChart(document.getElementById('sale_2_chart_div'));
+
+        saleChart.draw(data, options);
+      }
+
+      function drawSale3Chart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Date', 'Sale price 3'],
+          <?php
+          foreach ($product_sale_prices_3 as $sale_price) {
+            echo "['$sale_price[created_at]',$sale_price[price]],";
+          }
+          ?>
+        ]);
+
+        var options = {
+          title: 'Sale Price 3',
+          legend: { position: 'right' }
+        };
+
+        var saleChart = new google.visualization.LineChart(document.getElementById('sale_3_chart_div'));
+
+        saleChart.draw(data, options);
+      }
+
+      function drawBuy1Chart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Date', 'Buy price 1'],
+          <?php
+          foreach ($product_buy_prices_1 as $buy_price) {
             echo "['$buy_price[created_at]',$buy_price[price]],";
           }
           ?>
         ]);
 
         var options = {
-          title: 'Buy Price',
+          title: 'Buy Price 1',
           legend: { position: 'right' }
         };
 
-        var buyChart = new google.visualization.LineChart(document.getElementById('buy_chart_div'));
+        var buyChart = new google.visualization.LineChart(document.getElementById('buy_1_chart_div'));
+
+        buyChart.draw(data, options);
+      }
+
+      function drawBuy2Chart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Date', 'Buy price 2'],
+          <?php
+          foreach ($product_buy_prices_2 as $buy_price) {
+            echo "['$buy_price[created_at]',$buy_price[price]],";
+          }
+          ?>
+        ]);
+
+        var options = {
+          title: 'Buy Price 2',
+          legend: { position: 'right' }
+        };
+
+        var buyChart = new google.visualization.LineChart(document.getElementById('buy_2_chart_div'));
+
+        buyChart.draw(data, options);
+      }
+
+      function drawBuy3Chart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Date', 'Buy price 3'],
+          <?php
+          foreach ($product_buy_prices_3 as $buy_price) {
+            echo "['$buy_price[created_at]',$buy_price[price]],";
+          }
+          ?>
+        ]);
+
+        var options = {
+          title: 'Buy Price 3',
+          legend: { position: 'right' }
+        };
+
+        var buyChart = new google.visualization.LineChart(document.getElementById('buy_3_chart_div'));
 
         buyChart.draw(data, options);
       }
@@ -98,18 +186,39 @@
       </div>
 
       <div class="row">
-        <h3>Sale Price</h3>
-        <div id="sale_chart_div"></div>
+        <h3>Sale Price 1</h3>
+        <div id="sale_1_chart_div"></div>
       </div>
 
       <div class="row">
-        <h3>Buy Price</h3>
-        <div id="buy_chart_div"></div>
+        <h3>Sale Price 2</h3>
+        <div id="sale_2_chart_div"></div>
       </div>
 
       <div class="row">
-        <div class="col-lg-6">
-          <h3>Sale price table</h3>
+        <h3>Sale Price 3</h3>
+        <div id="sale_3_chart_div"></div>
+      </div>
+
+      <div class="row">
+        <h3>Buy Price 1</h3>
+        <div id="buy_1_chart_div"></div>
+      </div>
+
+      <div class="row">
+        <h3>Buy Price 2</h3>
+        <div id="buy_2_chart_div"></div>
+      </div>
+
+      <div class="row">
+        <h3>Buy Price 3</h3>
+        <div id="buy_3_chart_div"></div>
+      </div>
+
+      <div class="row">
+
+        <div class="col-lg-4">
+          <h3>Sale price 1 table</h3>
           <table class="table table-striped table-hover">
             <thead>
               <tr>
@@ -119,7 +228,7 @@
             </thead>
             <tbody>
               <?php
-              foreach ($product_sale_prices as $sale_prices) {
+              foreach ($product_sale_prices_1 as $sale_prices) {
                 echo "<tr>";
                 echo "<td>".$sale_prices["created_at"]."</td>";
                 echo "<td>".$sale_prices["price"]."</td>";
@@ -130,8 +239,8 @@
           </table>
         </div>
 
-        <div class="col-lg-6">
-          <h3>Buy price table</h3>
+        <div class="col-lg-4">
+          <h3>Sale price 2 table</h3>
           <table class="table table-striped table-hover">
             <thead>
               <tr>
@@ -141,7 +250,55 @@
             </thead>
             <tbody>
               <?php
-              foreach ($product_buy_prices as $buy_prices) {
+              foreach ($product_sale_prices_2 as $sale_prices) {
+                echo "<tr>";
+                echo "<td>".$sale_prices["created_at"]."</td>";
+                echo "<td>".$sale_prices["price"]."</td>";
+                echo "</tr>";
+              }
+              ?>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="col-lg-4">
+          <h3>Sale price 3 table</h3>
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>date</th>
+                <th>price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              foreach ($product_sale_prices_3 as $sale_prices) {
+                echo "<tr>";
+                echo "<td>".$sale_prices["created_at"]."</td>";
+                echo "<td>".$sale_prices["price"]."</td>";
+                echo "</tr>";
+              }
+              ?>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-lg-4">
+          <h3>Buy price 1 table</h3>
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>date</th>
+                <th>price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              foreach ($product_buy_prices_1 as $buy_prices) {
                 echo "<tr>";
                 echo "<td>".$buy_prices["created_at"]."</td>";
                 echo "<td>".$buy_prices["price"]."</td>";
@@ -151,6 +308,51 @@
             </tbody>
           </table>
         </div>
+
+        <div class="col-lg-4">
+          <h3>Buy price 2 table</h3>
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>date</th>
+                <th>price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              foreach ($product_buy_prices_2 as $buy_prices) {
+                echo "<tr>";
+                echo "<td>".$buy_prices["created_at"]."</td>";
+                echo "<td>".$buy_prices["price"]."</td>";
+                echo "</tr>";
+              }
+              ?>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="col-lg-4">
+          <h3>Buy price 3 table</h3>
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>date</th>
+                <th>price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              foreach ($product_buy_prices_3 as $buy_prices) {
+                echo "<tr>";
+                echo "<td>".$buy_prices["created_at"]."</td>";
+                echo "<td>".$buy_prices["price"]."</td>";
+                echo "</tr>";
+              }
+              ?>
+            </tbody>
+          </table>
+        </div>
+
       </div>
     </div>
 

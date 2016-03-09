@@ -11,15 +11,16 @@
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $inputProductId = testInput($_POST["inputProductId"]);
     $inputPrice = testInput($_POST["inputPrice"]);
+    $inputPriceLevel = testInput($_POST["inputPriceLevel"]);
     $inputPriceType = testInput($_POST["inputPriceType"]);
   }
 
   if ($inputPriceType==="sale") {
-    $sql = "INSERT INTO product_sale_prices (product_id, price, created_at, updated_at)
-            VALUES ($inputProductId, $inputPrice, now(), now())";
+    $sql = "INSERT INTO product_sale_prices (product_id, price, price_level, created_at, updated_at)
+            VALUES ($inputProductId, $inputPrice, $inputPriceLevel, now(), now())";
   } elseif ($inputPriceType==="buy") {
-    $sql = "INSERT INTO product_buy_prices (product_id, price, created_at, updated_at)
-            VALUES ($inputProductId, $inputPrice, now(), now())";
+    $sql = "INSERT INTO product_buy_prices (product_id, price, price_level, created_at, updated_at)
+            VALUES ($inputProductId, $inputPrice, $inputPriceLevel, now(), now())";
   }
 
   // echo $sql;

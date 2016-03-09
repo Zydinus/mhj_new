@@ -6,7 +6,7 @@
 ?>
 <?php
   // define variables and set to empty values
-  $inputId = $inputName = $inputEmail = $inputPassword = $optionsPermission = $source = "";
+  $inputId = $inputCustomId = $inputName = $inputShortName = $inputUnit = $inputWeight = $inputGroup = $optionsCategory = $source = "";
 
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $inputId = testInput($_POST["inputIdEdit"]);
@@ -15,6 +15,7 @@
     $inputShortName = testInput($_POST["inputShortName"]);
     $inputUnit = testInput($_POST["inputUnit"]);
     $inputWeight = testInput($_POST["inputWeight"]);
+    $inputGroup = testInput($_POST["inputGroup"]);
     $optionsCategory = testInput($_POST["optionsCategory"]);
     $source = testInput($_POST["source"]);
   }
@@ -25,6 +26,7 @@
             short_name='$inputShortName',
             unit='$inputUnit',
             weight=$inputWeight,
+            product_group='$inputGroup',
             category_id=$optionsCategory,
             updated_at=now()
           WHERE id=$inputId;";

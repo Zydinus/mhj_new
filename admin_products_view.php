@@ -42,6 +42,7 @@
           $button .= "data-shortname='$product[short_name]' ";
           $button .= "data-unit='$product[unit]' ";
           $button .= "data-weight='$product[weight]' ";
+          $button .= "data-group='$product[product_group]' ";
           $button .= "data-category='$product[category_id]' >";
           $button .= "<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>";
           $button .= "</button>";
@@ -49,9 +50,9 @@
           return $button;
         }
 
-        function makePriceEditButton($id, $name, $type) {
+        function makePriceEditButton($id, $name, $type, $level) {
           $button = "<button type='button' class='btn btn-warning btn-xs' ";
-          $button .= "onclick='javascript:editPrice($id,\"$type\",\"$name\")'>";
+          $button .= "onclick='javascript:editPrice($id,\"$type\",\"$name\",\"$level\")'>";
           $button .= "<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>";
           $button .= "</button>";
 
@@ -115,15 +116,18 @@
               <table class="table table-striped">
                 <thead>
                   <tr>
+                    <th>group</th>
                     <th>custom_id</th>
                     <th>name</th>
                     <th>short_name</th>
                     <th>unit</th>
                     <th>weight</th>
-                    <th>sale price</th>
-                    <th>sale price</th>
-                    <th>buy price</th>
-                    <th>buy price at</th>
+                    <th>sale price 1</th>
+                    <th>sale price 2</th>
+                    <th>sale price 3</th>
+                    <th>buy price 1</th>
+                    <th>buy price 2</th>
+                    <th>buy price 3</th>
                     <th>command</th>
                   </tr>
                 </thead>
@@ -134,17 +138,33 @@
 
                   foreach ( $products as $product) {
                     echo "<tr>";
+                    echo "<td>".$product["product_group"]."</td>";
                     echo "<td>".$product["custom_id"]."</td>";
                     echo "<td>".$product["name"]."</td>";
                     echo "<td>".$product["short_name"]."</td>";
                     echo "<td>".$product["unit"]."</td>";
                     echo "<td class='text-right'>".$product["weight"]."</td>";
-                    echo "<td class='text-right'><span id=\"p$product[id]SalePrice\">".$product["sale_price"]."</span>";
-                    echo " ".makePriceEditButton($product["id"],$product["name"],"sale")."</td>";
-                    echo "<td><span id=\"p$product[id]SaleDate\">".$product["sale_price_updated_at"]."</span></td>";
-                    echo "<td class='text-right'><span id=\"p$product[id]BuyPrice\">".$product["buy_price"]."</span>";
-                    echo " ".makePriceEditButton($product["id"],$product["name"],"buy")."</td>";
-                    echo "<td><span id=\"p$product[id]BuyDate\">".$product["buy_price_updated_at"]."</span></td>";
+
+                    echo "<td class='text-right'><span id=\"p$product[id]SalePrice1\">".$product["sale_price_1"]."</span>";
+                    echo " ".makePriceEditButton($product["id"],$product["name"],"sale",1);
+                    echo "<br/><span id=\"p$product[id]SaleDate1\">".$product["sale_price_updated_at_1"]."</span></td>";
+                    echo "<td class='text-right'><span id=\"p$product[id]SalePrice2\">".$product["sale_price_2"]."</span>";
+                    echo " ".makePriceEditButton($product["id"],$product["name"],"sale",2);
+                    echo "<br/><span id=\"p$product[id]SaleDate2\">".$product["sale_price_updated_at_2"]."</span></td>";
+                    echo "<td class='text-right'><span id=\"p$product[id]SalePrice3\">".$product["sale_price_3"]."</span>";
+                    echo " ".makePriceEditButton($product["id"],$product["name"],"sale",3);
+                    echo "<br/><span id=\"p$product[id]SaleDate3\">".$product["sale_price_updated_at_3"]."</span></td>";
+
+                    echo "<td class='text-right'><span id=\"p$product[id]BuyPrice1\">".$product["buy_price_1"]."</span>";
+                    echo " ".makePriceEditButton($product["id"],$product["name"],"buy",1);
+                    echo "<br/><span id=\"p$product[id]BuyDate1\">".$product["buy_price_updated_at_1"]."</span></td>";
+                    echo "<td class='text-right'><span id=\"p$product[id]BuyPrice2\">".$product["buy_price_2"]."</span>";
+                    echo " ".makePriceEditButton($product["id"],$product["name"],"buy",2);
+                    echo "<br/><span id=\"p$product[id]BuyDate2\">".$product["buy_price_updated_at_2"]."</span></td>";
+                    echo "<td class='text-right'><span id=\"p$product[id]BuyPrice3\">".$product["buy_price_3"]."</span>";
+                    echo " ".makePriceEditButton($product["id"],$product["name"],"buy",3);
+                    echo "<br/><span id=\"p$product[id]BuyDate3\">".$product["buy_price_updated_at_3"]."</span></td>";
+
                     echo "<td>";
                     echo makeProductByIdButton($product)." ";
                     echo makeProductEditButton($product)." ";
@@ -182,6 +202,13 @@
               <input type="hidden" name="source" value="admin_products_view.php" required>
 
               <div class="form-group">
+                <label for="inputGroup" class="col-md-3 control-label">Group</label>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" name="inputGroup" id="inputGroup" placeholder="Group" required>
+                </div>
+              </div>
+
+              <div class="form-group">
                 <label for="inputCustomId" class="col-md-3 control-label">Custom id</label>
                 <div class="col-md-9">
                   <input type="text" class="form-control" name="inputCustomId" id="inputCustomId" placeholder="Custom id" required>
@@ -217,16 +244,44 @@
               </div>
 
               <div class="form-group">
-                <label for="inputSalePrice" class="col-md-3 control-label">Sale Price</label>
+                <label for="inputSalePrice1" class="col-md-3 control-label">Sale Price 1</label>
                 <div class="col-md-9">
-                  <input type="number" class="form-control" name="inputSalePrice" id="inputSalePrice" step="0.01" placeholder="xx.xx" required>
+                  <input type="number" class="form-control" name="inputSalePrice1" id="inputSalePrice1" step="0.01" placeholder="xx.xx" required>
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="inputBuyPrice" class="col-md-3 control-label">Buy Price</label>
+                <label for="inputSalePrice2" class="col-md-3 control-label">Sale Price 2</label>
                 <div class="col-md-9">
-                  <input type="number" class="form-control" name="inputBuyPrice" id="inputBuyPrice" step="0.01" placeholder="xx.xx" required>
+                  <input type="number" class="form-control" name="inputSalePrice2" id="inputSalePrice2" step="0.01" placeholder="xx.xx" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="inputSalePrice3" class="col-md-3 control-label">Sale Price 3</label>
+                <div class="col-md-9">
+                  <input type="number" class="form-control" name="inputSalePrice3" id="inputSalePrice3" step="0.01" placeholder="xx.xx" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="inputBuyPrice1" class="col-md-3 control-label">Buy Price 1</label>
+                <div class="col-md-9">
+                  <input type="number" class="form-control" name="inputBuyPrice1" id="inputBuyPrice1" step="0.01" placeholder="xx.xx" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="inputBuyPrice2" class="col-md-3 control-label">Buy Price 2</label>
+                <div class="col-md-9">
+                  <input type="number" class="form-control" name="inputBuyPrice2" id="inputBuyPrice2" step="0.01" placeholder="xx.xx" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="inputBuyPrice3" class="col-md-3 control-label">Buy Price 3</label>
+                <div class="col-md-9">
+                  <input type="number" class="form-control" name="inputBuyPrice3" id="inputBuyPrice3" step="0.01" placeholder="xx.xx" required>
                 </div>
               </div>
 
@@ -269,6 +324,13 @@
             <form action="admin_product_edit_process.php" method="post" class="form-horizontal" name="editProduct" id="editProduct">
               <input type="hidden" name="inputIdEdit" id="inputIdEdit" value="">
               <input type="hidden" name="source" value="admin_products_view.php">
+
+              <div class="form-group">
+                <label for="inputGroupEdit" class="col-md-3 control-label">Custom id</label>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" name="inputGroup" id="inputGroupEdit" placeholder="Custom id">
+                </div>
+              </div>
 
               <div class="form-group">
                 <label for="inputCustomIdEdit" class="col-md-3 control-label">Custom id</label>
@@ -339,6 +401,7 @@
       $('#editProductModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget); // Button that triggered the modal
         var id = button.data('id'); // Extract info from data-* attributes
+        var group = button.data('group');
         var customId = button.data('customid');
         var name = button.data('name');
         var shortName = button.data('shortname');
@@ -349,6 +412,7 @@
         // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
         var modal = $(this);
         modal.find('#inputIdEdit').val(id);
+        modal.find('#inputGroupEdit').val(group);
         modal.find('#inputCustomIdEdit').val(customId);
         modal.find('#inputNameEdit').val(name);
         modal.find('#inputShortNameEdit').val(shortName);
@@ -366,7 +430,7 @@
 
       }
 
-      function editPrice(id, type, productName) {
+      function editPrice(id, type, productName, level) {
         var price = prompt("New price for "+productName);
 
         if (price===null || price==="") {
@@ -385,7 +449,8 @@
             url: "admin_product_price_add_process.php",
             data: {
               inputProductId: id,
-              inputPrice: price ,
+              inputPrice: price,
+              inputPriceLevel: level,
               inputPriceType: type
             }
           })
@@ -399,11 +464,11 @@
 
             // update display data
             if (type==="sale") {
-              $("#p"+id+"SalePrice").html(data.price.price);
-              $("#p"+id+"SaleDate").html(data.price.created_at);
+              $("#p"+id+"SalePrice"+level).html(data.price.price);
+              $("#p"+id+"SaleDate"+level).html(data.price.created_at);
             } else if (type==="buy") {
-              $("#p"+id+"BuyPrice").html(data.price.price);
-              $("#p"+id+"BuyDate").html(data.price.created_at);
+              $("#p"+id+"BuyPrice"+level).html(data.price.price);
+              $("#p"+id+"BuyDate"+level).html(data.price.created_at);
             }
           })
           .fail(function() {

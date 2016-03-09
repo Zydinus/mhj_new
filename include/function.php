@@ -28,8 +28,7 @@
     if ($result->num_rows > 0) {
       // output data of each row
       while($row = $result->fetch_assoc()) {
-          // echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
-          $users[] = $row;
+        $users[] = $row;
       }
     }
 
@@ -62,8 +61,7 @@
     if ($result->num_rows > 0) {
       // output data of each row
       while($row = $result->fetch_assoc()) {
-          // echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
-          $productCategories[] = $row;
+        $productCategories[] = $row;
       }
     }
 
@@ -83,8 +81,7 @@
     if ($result->num_rows > 0) {
       // output data of each row
       while($row = $result->fetch_assoc()) {
-          // echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
-          $products[] = $row;
+        $products[] = $row;
       }
     }
 
@@ -94,59 +91,7 @@
   function getProductsWithPrice($conn, $option='all') {
     $products = [];
 
-    $sql = "SELECT
-                p.*,
-                (SELECT
-                        price
-                    FROM
-                        product_sale_prices psp
-                    WHERE
-                        psp.product_id = p.id
-                            AND psp.created_at IN (SELECT
-                                MAX(psp2.created_at)
-                            FROM
-                                product_sale_prices psp2
-                            WHERE
-                                psp2.product_id = p.id)) sale_price,
-                (SELECT
-                        created_at
-                    FROM
-                        product_sale_prices psp
-                    WHERE
-                        psp.product_id = p.id
-                            AND psp.created_at IN (SELECT
-                                MAX(psp2.created_at)
-                            FROM
-                                product_sale_prices psp2
-                            WHERE
-                                psp2.product_id = p.id)) sale_price_updated_at,
-                (SELECT
-                        price
-                    FROM
-                        product_buy_prices pbp
-                    WHERE
-                        pbp.product_id = p.id
-                            AND pbp.created_at IN (SELECT
-                                MAX(pbp2.created_at)
-                            FROM
-                                product_buy_prices pbp2
-                            WHERE
-                                pbp2.product_id = p.id)) buy_price,
-                (SELECT
-                        created_at
-                    FROM
-                        product_buy_prices pbp
-                    WHERE
-                        pbp.product_id = p.id
-                            AND pbp.created_at IN (SELECT
-                                MAX(pbp2.created_at)
-                            FROM
-                                product_buy_prices pbp2
-                            WHERE
-                                pbp2.product_id = p.id)) buy_price_updated_at
-            FROM
-                products p
-            ";
+    $sql = file_get_contents("sql/product_with_lastest_price.sql");
 
     if ($option==='all') {
       $sql .= "";
@@ -158,8 +103,7 @@
     if ($result->num_rows > 0) {
       // output data of each row
       while($row = $result->fetch_assoc()) {
-          // echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
-          $products[] = $row;
+        $products[] = $row;
       }
     }
 
@@ -178,28 +122,26 @@
     if ($result->num_rows == 1) {
       // output data of each row
       while($row = $result->fetch_assoc()) {
-          // echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
-          $price = $row;
+        $price = $row;
       }
     }
     return $price;
   }
 
-  function getPricesByProductId($conn, $id, $type) {
+  function getPricesByProductIdLevel($conn, $id, $type, $level) {
     $prices = [];
 
     if ($type==="sale") {
-      $sql = "SELECT * FROM product_sale_prices WHERE product_id=$id";
+      $sql = "SELECT * FROM product_sale_prices WHERE product_id=$id AND price_level=$level";
     } elseif ($type==="buy") {
-      $sql = "SELECT * FROM product_buy_prices WHERE product_id=$id";
+      $sql = "SELECT * FROM product_buy_prices WHERE product_id=$id AND price_level=$level";
     }
 
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
       // output data of each row
       while($row = $result->fetch_assoc()) {
-          // echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
-          $prices[] = $row;
+        $prices[] = $row;
       }
     }
     return $prices;
@@ -215,8 +157,7 @@
     if ($result->num_rows == 1) {
       // output data of each row
       while($row = $result->fetch_assoc()) {
-          // echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
-          $product = $row;
+        $product = $row;
       }
     }
     return $product;
@@ -231,8 +172,7 @@
     if ($result->num_rows > 0) {
       // output data of each row
       while($row = $result->fetch_assoc()) {
-          // echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
-          $customers[] = $row;
+        $customers[] = $row;
       }
     }
     return $customers;
