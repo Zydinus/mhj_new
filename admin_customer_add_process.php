@@ -36,8 +36,8 @@
           `tel`, `fax`, `mobile_tel`, `email`,
           `customer_type`, `payment`, `credit`, `created_at`, `updated_at`)
           VALUES (
-            '$inputShortName', '$inputTitle', '$inputName', '$inputContactName',
-            '$inputFirstContactDate', $inputTaxVat, '$inputAddress', '$inputRegion',
+            '$inputShortName', '$inputTitle', '$inputName', '$inputFirstContactDate',
+            '$inputContactName', $inputTaxVat, '$inputAddress', '$inputRegion',
             '$inputProvince', '$inputDistrict', '$inputZip', $inputDistance,
             '$inputTel', '$inputFax', '$inputMobileTel', '$inputEmail',
             '$optionsCustomerType', '$optionsPayment', '$optionsCredit', now(), now() )";
