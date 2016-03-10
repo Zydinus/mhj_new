@@ -6,4 +6,6 @@
   include "string.php";
 
   include "control_user.php";
+
+  include "constant.php";
 ?>
