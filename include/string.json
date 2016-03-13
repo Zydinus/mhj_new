@@ -5,10 +5,14 @@
   "sign_out":{"en":"sign out","th":"ออกจากระบบ"},
   "cancel":{"en":"cancel","th":"ยกเลิก"},
   "add":{"en":"add","th":"เพิ่ม"},
+  "edit":{"en":"Edit","th":"แก้ไข"},
+  "date_time":{"en":"date time","th":"วัน เวลา"},
   "email":{"en":"email","th":"อีเมล์"},
   "username":{"en":"username","th":"ชื่อผู้ใช้"},
   "password":{"en":"password","th":"รหัสผ่าน"},
   "sale_system":{"en":"Sale System","th":"ระบบขาย"},
+  "sale_new":{"en":"New Sale","th":"รายการขายใหม่"},
+  "sale_list_today":{"en":"Sale list today","th":"รายการขายวันนี้"},
   "home":{"en":"Home","th":"หน้าแรก"},
   "or":{"en":"or","th":"หรือ"},
   "miss_match_token_or_password":{"en":"miss match token or password","th":"ชื่อผู้ใช้ หรือรหัสผ่าน ไม่ถูกต้อง"},
@@ -18,5 +22,6 @@
   "product_edit":{"en":"Edit Product","th":"แก้ไขสินค้า"},
   "customer_dashboard":{"en":"Customer Dashboard","th":"Customer Dashboard"},
   "customer_add":{"en":"Add Customer","th":"เพิ่มลูกค้า"},
-  "customer_all":{"en":"All Customer","th":"ลูกค้าทั้งหมด"}
+  "customer_all":{"en":"All Customer","th":"ลูกค้าทั้งหมด"},
+  "customer_name":{"en":"Customer Name","th":"ชื่อลูกค้า"}
 }
