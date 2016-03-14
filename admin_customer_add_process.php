@@ -27,6 +27,10 @@
     $optionsCustomerType = testInput($_POST["optionsCustomerType"]);
     $optionsPayment = testInput($_POST["optionsPayment"]);
     $optionsCredit = testInput($_POST["optionsCredit"]);
+    $optionsSalePriceLevel = testInput($_POST["optionsSalePriceLevel"]);
+    $optionsBuyPriceLevel = testInput($_POST["optionsBuyPriceLevel"]);
+
+
   }
 
   $sql = "INSERT INTO customers (
@@ -34,13 +38,17 @@
           `contact_name`, `tax_vat`, `address_text`, `region`,
           `province`, `district`, `zip`, `distance`,
           `tel`, `fax`, `mobile_tel`, `email`,
-          `customer_type`, `payment`, `credit`, `created_at`, `updated_at`)
+          `customer_type`, `payment`, `credit`,
+          `sale_price_level`, `buy_price_level`
+          `created_at`, `updated_at`)
           VALUES (
             '$inputShortName', '$inputTitle', '$inputName', '$inputFirstContactDate',
             '$inputContactName', $inputTaxVat, '$inputAddress', '$inputRegion',
             '$inputProvince', '$inputDistrict', '$inputZip', $inputDistance,
             '$inputTel', '$inputFax', '$inputMobileTel', '$inputEmail',
-            '$optionsCustomerType', '$optionsPayment', '$optionsCredit', now(), now() )";
+            '$optionsCustomerType', '$optionsPayment', '$optionsCredit', 
+            $optionsSalePriceLevel, $optionsBuyPriceLevel,
+            now(), now() )";
 
   // echo $sql;
   if ($conn->query($sql) === TRUE) {

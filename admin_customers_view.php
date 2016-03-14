@@ -99,6 +99,8 @@
               <th>customer_type</th>
               <th>payment</th>
               <th>credit</th>
+              <th>sale price level</th>
+              <th>buy price level</th>
               <th>command</th>
             </tr>
           </thead>
@@ -127,6 +129,8 @@
               echo "<td>$customer[customer_type]</td>";
               echo "<td>$customer[payment]</td>";
               echo "<td>$customer[credit]</td>";
+              echo "<td>$customer[sale_price_level]</td>";
+              echo "<td>$customer[buy_price_level]</td>";
               echo "<td>";
               // echo makeCustomerByIdButton($product)." ";
               // echo makeCustomerEditButton($product)." ";
@@ -328,6 +332,54 @@
                   <?php
                   }
                   ?>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-2 control-label">Sale price level</label>
+                <div class="col-md-10">
+                  <div class="radio radio-primary">
+                    <label>
+                      <input type="radio" name="optionsSalePriceLevel" id="optionsSalePriceLevel1" value="1" checked="">
+                      1
+                    </label>
+                  </div>
+                  <div class="radio radio-primary">
+                    <label>
+                      <input type="radio" name="optionsSalePriceLevel" id="optionsSalePriceLevel2" value="2">
+                      2
+                    </label>
+                  </div>
+                  <div class="radio radio-primary">
+                    <label>
+                      <input type="radio" name="optionsSalePriceLevel" id="optionsSalePriceLevel3" value="3">
+                      3
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-2 control-label">Buy price level</label>
+                <div class="col-md-10">
+                  <div class="radio radio-primary">
+                    <label>
+                      <input type="radio" name="optionsBuyPriceLevel" id="optionsBuyPriceLevel1" value="1" checked="">
+                      1
+                    </label>
+                  </div>
+                  <div class="radio radio-primary">
+                    <label>
+                      <input type="radio" name="optionsBuyPriceLevel" id="optionsBuyPriceLevel2" value="2">
+                      2
+                    </label>
+                  </div>
+                  <div class="radio radio-primary">
+                    <label>
+                      <input type="radio" name="optionsBuyPriceLevel" id="optionsBuyPriceLevel3" value="3">
+                      3
+                    </label>
+                  </div>
                 </div>
               </div>
 

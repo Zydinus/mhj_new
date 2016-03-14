@@ -12,11 +12,13 @@
   $result = $conn->query($sql);
   if ( $result->num_rows == 1 ) {
     while($row = $result->fetch_assoc()) {
-        $user_level = $row["level"];
-        $user_email = $row["email"];
-        $user_username = $row["username"];
+      $user_id = $row["id"];
+      $user_level = $row["level"];
+      $user_email = $row["email"];
+      $user_username = $row["username"];
     }
     $_SESSION["user_is_signin"] = true;
+    $_SESSION["user_id"] = $user_id;
     $_SESSION["user_email"] = $user_email;
     $_SESSION["user_username"] = $user_username;
     $_SESSION["user_level"] = $user_level;
