@@ -110,6 +110,28 @@
     return $products;
   }
 
+  function getProductsWithPriceRenamed($conn, $option='all') {
+    $products = [];
+
+    $sql = file_get_contents("sql/product_with_lastest_price_renamed.sql");
+
+    if ($option==='all') {
+      $sql .= "";
+    } else {
+      $sql .= " WHERE p.category_id = $option";
+    }
+
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+      // output data of each row
+      while($row = $result->fetch_assoc()) {
+        $products[] = $row;
+      }
+    }
+
+    return $products;
+  }
+
   function getPriceById($conn, $id, $type) {
 
     if ($type==="sale") {
@@ -181,7 +203,7 @@
   function getAllCustomersRenamed($conn) {
     $customers = [];
 
-    $sql = "SELECT 
+    $sql = "SELECT
       `id`, `short_name` as name, `title`, `name` as customer_name,
       `first_contact_date`, `contact_name`, `tax_vat`, `address_text`,
       `region`, `province`, `district`, `zip`,
