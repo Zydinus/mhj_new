@@ -209,6 +209,7 @@
       `region`, `province`, `district`, `zip`,
       `distance`, `tel`, `fax`, `mobile_tel`,
       `email`, `customer_type`, `payment`, `credit`,
+      `sale_price_level`, `buy_price_level`, 
       `created_at`, `updated_at` FROM `customers`";
 
     $result = $conn->query($sql);
