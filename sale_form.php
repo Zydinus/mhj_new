@@ -320,6 +320,7 @@
 
               var product = {};
               product.id = colId
+              product.priceLevel = currentCustomer.sale_price_level;
               product.originalPrice = colOriginalPrice;
               product.customPrice = colCustomPrice;
               product.quantity = colQuantity;

@@ -2,6 +2,7 @@
 <?php
   requireSignin(true);
   requireLevel(100);
+  $conn = connect_db($db_server, $db_username, $db_password, $db_dbname);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,14 +32,27 @@
             <thead>
               <tr>
                 <th><?= s2("customer_name") ?></th>
+                <th><?= s2("contract_name") ?></th>
                 <th><?= s2("date_time") ?></th>
+                <th><?= s2("total") ?></th>
                 <th><?= s2("edit") ?></th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-
-              </tr>
+              <?php
+              $sales = getTodaySalesWithTotal($conn);
+              foreach ($sales as $sale) {
+                ?>
+                <tr>
+                  <td><?= $sale["customer_name"]?></td>
+                  <td><?= $sale["contact_name"]?></td>
+                  <td><?= $sale["sale_created_at"]?></td>
+                  <td><?= $sale["total"]?></td>
+                  <td>.</td>
+                </tr>
+                <?php
+              }
+              ?>
             </tbody>
           </table>
         </div>

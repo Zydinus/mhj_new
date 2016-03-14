@@ -18,6 +18,7 @@
   "search_customer":{"en":"Search Customer","th":"ค้นหาลูกค้า"},
   "home":{"en":"Home","th":"หน้าแรก"},
   "or":{"en":"or","th":"หรือ"},
+  "total":{"en":"Total","th":"รวม"},
   "miss_match_token_or_password":{"en":"miss match token or password","th":"ชื่อผู้ใช้ หรือรหัสผ่าน ไม่ถูกต้อง"},
   "user_dashboard":{"en":"User Dashboard","th":"User Dashboard"},
   "product_dashboard":{"en":"Product Dashboard","th":"Product Dashboard"},
