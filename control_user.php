@@ -6,6 +6,10 @@ function isSignin() {
   return isset($_SESSION["user_is_signin"]) ? TRUE : FALSE;
 }
 
+function getUserId() {
+  return $_SESSION["user_id"];
+}
+
 function getUserEmail() {
   return $_SESSION["user_email"];
 }
