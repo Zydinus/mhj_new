@@ -295,7 +295,7 @@
               <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
               <?= s2("cancel") ?>
             </a>
-            <button type="button" class="btn btn-danger btn-lg" onclick="javascript:submitSale()">
+            <button id="btnSubmit" type="button" class="btn btn-danger btn-lg" onclick="javascript:submitSale()">
               <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
               <?= s2("save") ?>
             </button>
@@ -304,9 +304,12 @@
 
         <script type="text/javascript">
           function submitSale() {
-            if ($("#total").html()==="" || parseFloat($("#total").html()) == 0) {
+            if (currentCustomer.id===undefined || $("#total").html()=="" || parseFloat($("#total").html()) == 0) {
               return;
             }
+
+            // disable button
+            $("#btnSubmit").prop('disabled', true);
 
             var products = [];
 
@@ -336,31 +339,25 @@
             console.log(dateToSend);
 
             // ajax
-            // var jqxhr = $.ajax({
-            //   method: "POST",
-            //   url: "sale_add_process.php",
-            //   data: dateToSend
-            // })
-            // .done(function(data) {
-            //   // alert( "success" );
-            //   console.log(data);
-            //
-            //   if (data.result===false) {
-            //     return;
-            //   }
-            //
-            //   // update display data
-            //   if (type==="sale") {
-            //     $("#p"+id+"SalePrice"+level).html(data.price.price);
-            //     $("#p"+id+"SaleDate"+level).html(data.price.created_at);
-            //   } else if (type==="buy") {
-            //     $("#p"+id+"BuyPrice"+level).html(data.price.price);
-            //     $("#p"+id+"BuyDate"+level).html(data.price.created_at);
-            //   }
-            // })
-            // .fail(function() {
-            //   alert( "error" );
-            // });
+            var jqxhr = $.ajax({
+              method: "POST",
+              url: "sale_add_process.php",
+              data: dateToSend
+            })
+            .done(function(data) {
+              // alert( "success" );
+              console.log(data);
+
+              if (data.result===false) {
+                return;
+              }
+
+              window.location = "sale_start.php";
+
+            })
+            .fail(function() {
+              alert( "error" );
+            });
           }
         </script>
       </div>
