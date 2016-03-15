@@ -226,7 +226,7 @@
     $sales = [];
 
     $sql = "SELECT * FROM sales_with_total_view
-      WHERE sale_created_at = DATE(NOW())
+      WHERE DATE(sale_created_at) = DATE(NOW())
       ORDER BY sale_id";
 
     $result = $conn->query($sql);
