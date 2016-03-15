@@ -35,6 +35,7 @@
                 <th><?= s2("contract_name") ?></th>
                 <th><?= s2("date_time") ?></th>
                 <th><?= s2("total") ?></th>
+                <th><?= s2("by_user") ?></th>
                 <th><?= s2("edit") ?></th>
               </tr>
             </thead>
@@ -48,6 +49,7 @@
                   <td><?= $sale["contact_name"]?></td>
                   <td><?= $sale["sale_created_at"]?></td>
                   <td><?= $sale["total"]?></td>
+                  <td><?= $sale["user_name"]?></td>
                   <td>.</td>
                 </tr>
                 <?php

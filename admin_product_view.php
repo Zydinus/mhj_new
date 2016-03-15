@@ -217,70 +217,37 @@
 
       <div class="row">
 
+        <?php
+        function priceTableGenerator($prices) {
+          $output = '<table class="table table-striped table-hover">';
+          $output .= '<thead><tr><th>date</th><th>price</th></tr></thead>';
+          $output .= '<tbody>';
+          foreach ($prices as $price) {
+            $output .= '<tr>';
+            $output .= "<td>".$price["created_at"]."</td>";
+            $output .= "<td>".$price["price"]."</td>";
+            $output .= '</tr>';
+          }
+          $output .= '</tbody>';
+          $output .= '</table>';
+
+          return $output;
+        }
+        ?>
+
         <div class="col-lg-4">
           <h3>Sale price 1 table</h3>
-          <table class="table table-striped table-hover">
-            <thead>
-              <tr>
-                <th>date</th>
-                <th>price</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php
-              foreach ($product_sale_prices_1 as $sale_prices) {
-                echo "<tr>";
-                echo "<td>".$sale_prices["created_at"]."</td>";
-                echo "<td>".$sale_prices["price"]."</td>";
-                echo "</tr>";
-              }
-              ?>
-            </tbody>
-          </table>
+          <?= priceTableGenerator(array_reverse($product_sale_prices_1)) ?>
         </div>
 
         <div class="col-lg-4">
           <h3>Sale price 2 table</h3>
-          <table class="table table-striped table-hover">
-            <thead>
-              <tr>
-                <th>date</th>
-                <th>price</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php
-              foreach ($product_sale_prices_2 as $sale_prices) {
-                echo "<tr>";
-                echo "<td>".$sale_prices["created_at"]."</td>";
-                echo "<td>".$sale_prices["price"]."</td>";
-                echo "</tr>";
-              }
-              ?>
-            </tbody>
-          </table>
+          <?= priceTableGenerator(array_reverse($product_sale_prices_2)) ?>
         </div>
 
         <div class="col-lg-4">
           <h3>Sale price 3 table</h3>
-          <table class="table table-striped table-hover">
-            <thead>
-              <tr>
-                <th>date</th>
-                <th>price</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php
-              foreach ($product_sale_prices_3 as $sale_prices) {
-                echo "<tr>";
-                echo "<td>".$sale_prices["created_at"]."</td>";
-                echo "<td>".$sale_prices["price"]."</td>";
-                echo "</tr>";
-              }
-              ?>
-            </tbody>
-          </table>
+          <?= priceTableGenerator(array_reverse($product_sale_prices_3)) ?>
         </div>
 
       </div>
@@ -289,68 +256,17 @@
 
         <div class="col-lg-4">
           <h3>Buy price 1 table</h3>
-          <table class="table table-striped table-hover">
-            <thead>
-              <tr>
-                <th>date</th>
-                <th>price</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php
-              foreach ($product_buy_prices_1 as $buy_prices) {
-                echo "<tr>";
-                echo "<td>".$buy_prices["created_at"]."</td>";
-                echo "<td>".$buy_prices["price"]."</td>";
-                echo "</tr>";
-              }
-              ?>
-            </tbody>
-          </table>
+          <?= priceTableGenerator(array_reverse($product_buy_prices_1)) ?>
         </div>
 
         <div class="col-lg-4">
           <h3>Buy price 2 table</h3>
-          <table class="table table-striped table-hover">
-            <thead>
-              <tr>
-                <th>date</th>
-                <th>price</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php
-              foreach ($product_buy_prices_2 as $buy_prices) {
-                echo "<tr>";
-                echo "<td>".$buy_prices["created_at"]."</td>";
-                echo "<td>".$buy_prices["price"]."</td>";
-                echo "</tr>";
-              }
-              ?>
-            </tbody>
-          </table>
+          <?= priceTableGenerator(array_reverse($product_buy_prices_2)) ?>
         </div>
 
         <div class="col-lg-4">
           <h3>Buy price 3 table</h3>
-          <table class="table table-striped table-hover">
-            <thead>
-              <tr>
-                <th>date</th>
-                <th>price</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php
-              foreach ($product_buy_prices_3 as $buy_prices) {
-                echo "<tr>";
-                echo "<td>".$buy_prices["created_at"]."</td>";
-                echo "<td>".$buy_prices["price"]."</td>";
-                echo "</tr>";
-              }
-              ?>
-            </tbody>
-          </table>
+          <?= priceTableGenerator(array_reverse($product_buy_prices_3)) ?>
         </div>
 
       </div>

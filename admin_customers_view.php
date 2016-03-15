@@ -132,7 +132,7 @@
               echo "<td>$customer[sale_price_level]</td>";
               echo "<td>$customer[buy_price_level]</td>";
               echo "<td>";
-              // echo makeCustomerByIdButton($product)." ";
+              echo makeCustomerByIdButton($customer)." ";
               // echo makeCustomerEditButton($product)." ";
               echo makeCustomerDeleteButton($customer);
               echo "</td>";
@@ -336,8 +336,8 @@
               </div>
 
               <div class="form-group">
-                <label class="col-md-2 control-label">Sale price level</label>
-                <div class="col-md-10">
+                <label class="col-md-3 control-label">Sale price level</label>
+                <div class="col-md-9">
                   <div class="radio radio-primary">
                     <label>
                       <input type="radio" name="optionsSalePriceLevel" id="optionsSalePriceLevel1" value="1" checked="">
@@ -360,8 +360,8 @@
               </div>
 
               <div class="form-group">
-                <label class="col-md-2 control-label">Buy price level</label>
-                <div class="col-md-10">
+                <label class="col-md-3 control-label">Buy price level</label>
+                <div class="col-md-9">
                   <div class="radio radio-primary">
                     <label>
                       <input type="radio" name="optionsBuyPriceLevel" id="optionsBuyPriceLevel1" value="1" checked="">

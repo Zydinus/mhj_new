@@ -39,14 +39,14 @@
           `province`, `district`, `zip`, `distance`,
           `tel`, `fax`, `mobile_tel`, `email`,
           `customer_type`, `payment`, `credit`,
-          `sale_price_level`, `buy_price_level`
+          `sale_price_level`, `buy_price_level`,
           `created_at`, `updated_at`)
           VALUES (
             '$inputShortName', '$inputTitle', '$inputName', '$inputFirstContactDate',
             '$inputContactName', $inputTaxVat, '$inputAddress', '$inputRegion',
             '$inputProvince', '$inputDistrict', '$inputZip', $inputDistance,
             '$inputTel', '$inputFax', '$inputMobileTel', '$inputEmail',
-            '$optionsCustomerType', '$optionsPayment', '$optionsCredit', 
+            '$optionsCustomerType', '$optionsPayment', '$optionsCredit',
             $optionsSalePriceLevel, $optionsBuyPriceLevel,
             now(), now() )";
 

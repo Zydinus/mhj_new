@@ -34,6 +34,8 @@ function nevbarItem($destination, $glyphicon, $text) {
             <?= nevbarItem("admin_customers_view.php", "glyphicon-user", s2("customer_dashboard")) ?>
             <?= nevbarItem("admin_products_view.php", "glyphicon-asterisk", s2("product_dashboard")) ?>
             <?= nevbarItem("admin_users_view.php", "glyphicon-user", s2("user_dashboard")) ?>
+            <li role="separator" class="divider"></li>
+            <?= nevbarItem("admin_sales_view.php", "glyphicon-send", s2("sale_dashboard")) ?>
           </ul>
         </li>
         <?php } ?>

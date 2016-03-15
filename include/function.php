@@ -150,13 +150,13 @@
     return $price;
   }
 
-  function getPricesByProductIdLevel($conn, $id, $type, $level) {
+  function getPricesByProductIdLevel($conn, $id, $type, $level, $order='ASC') {
     $prices = [];
 
     if ($type==="sale") {
-      $sql = "SELECT * FROM product_sale_prices WHERE product_id=$id AND price_level=$level";
+      $sql = "SELECT * FROM product_sale_prices WHERE product_id=$id AND price_level=$level ORDER BY created_at $order";
     } elseif ($type==="buy") {
-      $sql = "SELECT * FROM product_buy_prices WHERE product_id=$id AND price_level=$level";
+      $sql = "SELECT * FROM product_buy_prices WHERE product_id=$id AND price_level=$level ORDER BY created_at $order";
     }
 
     $result = $conn->query($sql);
@@ -222,12 +222,61 @@
     return $customers;
   }
 
+  function getCustomerById($conn, $id) {
+    $customer;
+
+    $sql = "SELECT * FROM customers WHERE id=$id";
+
+    $result = $conn->query($sql);
+    if ($result->num_rows == 1) {
+      // output data of each row
+      while($row = $result->fetch_assoc()) {
+        $customer = $row;
+      }
+    }
+    return $customer;
+  }
+
   function getTodaySalesWithTotal($conn) {
     $sales = [];
 
     $sql = "SELECT * FROM sales_with_total_view
       WHERE DATE(sale_created_at) = DATE(NOW())
-      ORDER BY sale_id";
+      ORDER BY sale_id DESC";
+
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+      // output data of each row
+      while($row = $result->fetch_assoc()) {
+        $sales[] = $row;
+      }
+    }
+    return $sales;
+  }
+
+  function getSalesWithTotal($conn, $begin_date, $end_date) {
+    $sales = [];
+
+    $sql = "SELECT * FROM sales_with_total_view
+      WHERE sale_created_at BETWEEN '$begin_date 0:0:0' AND '$end_date 23:59:59'
+      ORDER BY sale_id DESC";
+
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+      // output data of each row
+      while($row = $result->fetch_assoc()) {
+        $sales[] = $row;
+      }
+    }
+    return $sales;
+  }
+
+  function getSalesWithCustomerId($conn, $customer_id) {
+    $sales = [];
+
+    $sql = "SELECT * FROM sales_with_total_view
+      WHERE customer_id = $customer_id
+      ORDER BY sale_created_at";
 
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
