@@ -20,6 +20,20 @@
         <?= s2("sale_dashboard") ?>
       </h1>
 
+      <?php
+      if ( isset($_GET["success"]) ) {
+        if ( $_GET["success"]=="true" && $_GET["command"]=="delete" ) {
+          ?>
+          <div class="row">
+            <div class="alert alert-success" role="alert">
+              Delete sale success.
+            </div>
+          </div>
+          <?php
+        }
+      }
+      ?>
+
       <div class="row">
         <form method="get">
           <div class="col-lg-2 col-lg-offset-5">
@@ -61,11 +75,20 @@
                 <th><?= s2("date_time") ?></th>
                 <th><?= s2("total") ?></th>
                 <th><?= s2("by_user") ?></th>
-                <th><?= s2("edit") ?></th>
+                <th><?= s2("command") ?></th>
               </tr>
             </thead>
             <tbody>
               <?php
+              function makeDeleteButton($sale) {
+                $button = "<button type='button' class='btn btn-danger btn-sm' ";
+                $button .= "onclick='javascript:deleteSale($sale[sale_id])'>";
+                $button .= "<span class='glyphicon glyphicon-remove' aria-hidden='true'></span>";
+                $button .= "</button>";
+
+                return $button;
+              }
+
               $d1=new DateTime("now");
               $d1->setTimezone(new DateTimeZone('Asia/Bangkok'));
 
@@ -75,13 +98,13 @@
               $sales = getSalesWithTotal($conn, $begin_date, $end_date);
               foreach ($sales as $sale) {
                 ?>
-                <tr>
+                <tr class="<?= $sale["is_price_edited"]>0 ? "info": ""?>">
                   <td><?= $sale["customer_name"]?></td>
                   <td><?= $sale["contact_name"]?></td>
                   <td><?= $sale["sale_created_at"]?></td>
                   <td><?= $sale["total"]?></td>
                   <td><?= $sale["user_name"]?></td>
-                  <td>.</td>
+                  <td><?= makeDeleteButton($sale) ?></td>
                 </tr>
                 <?php
               }
@@ -92,6 +115,16 @@
 
       </div>
     </div>
+
+    <script type="text/javascript">
+      function deleteSale(id) {
+        var c = confirm("Delete ?");
+
+        if (c) {
+          window.location = "admin_sale_delete_process.php?id="+id;
+        }
+      }
+    </script>
 
     <!--  nev bar -->
     <?php include "nev_bar.php" ?>

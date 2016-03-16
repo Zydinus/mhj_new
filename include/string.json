@@ -7,6 +7,7 @@
   "save":{"en":"Save","th":"บันทึก"},
   "add":{"en":"add","th":"เพิ่ม"},
   "edit":{"en":"Edit","th":"แก้ไข"},
+  "command":{"en":"Command","th":"คำสั่ง"},
   "date_time":{"en":"date time","th":"วัน เวลา"},
   "email":{"en":"email","th":"อีเมล์"},
   "username":{"en":"username","th":"ชื่อผู้ใช้"},

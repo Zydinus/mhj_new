@@ -257,7 +257,7 @@
   function getSalesWithTotal($conn, $begin_date, $end_date) {
     $sales = [];
 
-    $sql = "SELECT * FROM sales_with_total_view
+    $sql = "SELECT * FROM sales_with_total_and_is_edited_view
       WHERE sale_created_at BETWEEN '$begin_date 0:0:0' AND '$end_date 23:59:59'
       ORDER BY sale_id DESC";
 
