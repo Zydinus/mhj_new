@@ -170,9 +170,11 @@
                     } else {
                         // This means it is only a partial match, you can either add a new item
                         // or take the active if you don't want new items
+                        selectedProduct = null;
                     }
                   } else {
                     // Nothing is active so it is a new value (or maybe empty value)
+                    selectedProduct = null;
                   }
                 });
 
@@ -225,6 +227,9 @@
                     return;
                   }
                   if (parseFloat($("#p_quantity").val()) === 0 || $("#p_quantity").val() === "") {
+                    return;
+                  }
+                  if (selectedProduct==null) {
                     return;
                   }
 
