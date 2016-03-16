@@ -80,6 +80,15 @@
             </thead>
             <tbody>
               <?php
+              function makeInfoButton($sale) {
+                $button = "<a role='button' class='btn btn-info btn-sm' ";
+                $button .= "href='admin_sale_view.php?id=$sale[sale_id]'>";
+                $button .= "<span class='glyphicon glyphicon-info-sign' aria-hidden='true'></span>";
+                $button .= "</a>";
+
+                return $button;
+              }
+
               function makeDeleteButton($sale) {
                 $button = "<button type='button' class='btn btn-danger btn-sm' ";
                 $button .= "onclick='javascript:deleteSale($sale[sale_id])'>";
@@ -104,7 +113,7 @@
                   <td><?= $sale["sale_created_at"]?></td>
                   <td><?= $sale["total"]?></td>
                   <td><?= $sale["user_name"]?></td>
-                  <td><?= makeDeleteButton($sale) ?></td>
+                  <td><?= makeInfoButton($sale) ?> <?= makeDeleteButton($sale) ?></td>
                 </tr>
                 <?php
               }

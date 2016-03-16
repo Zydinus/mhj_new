@@ -287,4 +287,34 @@
     }
     return $sales;
   }
+
+  function getSalesById($conn, $id) {
+    $sql = "SELECT * FROM sales_with_total_view
+      WHERE sale_id = $id";
+
+    $result = $conn->query($sql);
+    if ($result->num_rows == 1) {
+      // output data of each row
+      while($row = $result->fetch_assoc()) {
+        $sale = $row;
+      }
+    }
+    return $sale;
+  }
+
+  function getSaleDetailsBySaleId($conn, $sale_id) {
+    $sales_details = [];
+
+    $sql = "SELECT * FROM sales_details_with_total_and_is_edited_view
+      WHERE sale_id = $sale_id";
+
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+      // output data of each row
+      while($row = $result->fetch_assoc()) {
+        $sales_details[] = $row;
+      }
+    }
+    return $sales_details;
+  }
 ?>
