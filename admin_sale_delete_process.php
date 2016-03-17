@@ -10,6 +10,8 @@
 
   if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $inputId = testInput($_GET["id"]);
+    $begin_date = testInput($_GET["begin_date"]);
+    $end_date = testInput($_GET["end_date"]);
   }
 
   // die();
@@ -18,7 +20,10 @@
 
   // echo $sql;
   if ($conn->query($sql) === TRUE) {
-    header("Location: admin_sales_view.php?success=true&command=delete");
+    $url = "admin_sales_view.php?success=true&command=delete";
+    $url .= "&begin_date=$begin_date";
+    $url .= "&end_date=$end_date";
+    header("Location: $url");
     die();
   } else {
       // echo "Error: " . $sql . "<br>" . $conn->error;

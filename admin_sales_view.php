@@ -130,7 +130,10 @@
         var c = confirm("Delete ?");
 
         if (c) {
-          window.location = "admin_sale_delete_process.php?id="+id;
+          var url = "admin_sale_delete_process.php?id="+id;
+          url += "&begin_date=<?= $begin_date ?>";
+          url += "&end_date=<?= $end_date ?>";
+          window.location = url;
         }
       }
     </script>
