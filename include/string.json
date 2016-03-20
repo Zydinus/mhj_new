@@ -44,6 +44,8 @@
   "address":{"en":"Address","th":"ที่อยู่"},
   "province":{"en":"province","th":"จังหวัด"},
   "district":{"en":"district","th":"อำเภอ"},
+  "tax_vat":{"en":"Vat","th":"ภาษี"},
+  "discount":{"en":"discount","th":"ส่วนลด"},
   "tel":{"en":"Tel","th":"โทร"},
   "credit":{"en":"credit","th":"เครดิต"},
   "shipping_method":{"en":"Shipping Method","th":"วิธีการขนส่ง"},

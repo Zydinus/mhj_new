@@ -69,6 +69,7 @@
                 <th><?= s2("product_original_price") ?></th>
                 <th><?= s2("product_custom_price") ?></th>
                 <th><?= s2("product_quantity") ?></th>
+                <th><?= s2("discount") ?></th>
                 <th><?= s2("product_total") ?></th>
               </tr>
             </thead>
@@ -82,6 +83,7 @@
                   <td><?= $sale_detail["original_price"]?></td>
                   <td><?= $sale_detail["custom_price"]?></td>
                   <td><?= $sale_detail["quantity"]?></td>
+                  <td><?= percentFormat($sale_detail["discount"])?></td>
                   <td><?= $sale_detail["total"]?></td>
                 </tr>
                 <?php
@@ -90,8 +92,18 @@
             </tbody>
             <tfoot>
               <tr>
-                <th colspan="5"><?= s2("product_total") ?></th>
+                <th colspan="6"><?= s2("product_total") ?></th>
                 <th><?= $sale["total"] ?></th>
+              </tr>
+
+              <tr>
+                <th colspan="6"><?= s2("tax_vat") ?></th>
+                <th><?= percentFormat($sale["tax_vat"]) ?></th>
+              </tr>
+
+              <tr>
+                <th colspan="6"><?= s2("product_total") ?></th>
+                <th><?= $sale["grand_total"] ?></th>
               </tr>
             </tfoot>
           </table>

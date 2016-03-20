@@ -12,12 +12,13 @@
     $customer_id = testInput($_POST["customer_id"]);
     $user_id = testInput($_POST["user_id"]);
     $shipping_method = testInput($_POST["shipping_method"]);
+    $tax_vat = testInput($_POST["tax_vat"]);
   }
 
   $products = $_POST["products"];
 
-  $sql_sale = "INSERT INTO sales (user_id, customer_id, shipping_method, created_at, updated_at)
-          VALUES ($user_id, $customer_id, '$shipping_method',now(), now())";
+  $sql_sale = "INSERT INTO sales (user_id, customer_id, shipping_method, tax_vat, created_at, updated_at)
+          VALUES ($user_id, $customer_id, '$shipping_method', $tax_vat, now(), now())";
 
   // echo $sql;
   if ($conn->query($sql_sale) === TRUE) {
@@ -32,6 +33,7 @@
         original_price,
         custom_price,
         quantity,
+        discount,
         created_at,
         updated_at
       )
@@ -42,6 +44,7 @@
         $product[originalPrice],
         $product[customPrice],
         $product[quantity],
+        $product[discount],
         now(),
         now()
       ) ";

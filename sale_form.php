@@ -57,11 +57,14 @@
                 $("#c_customer_name").html(customer.customer_name);
                 $("#c_contact_name").html(customer.contact_name);
                 $("#c_address_text").html(customer.address_text);
+                $("#c_tax_vat").html(customer.tax_vat);
                 $("#c_province").html(customer.province);
                 $("#c_district").html(customer.district);
                 $("#c_credit").html(customer.credit);
                 $("#c_tel").html(customer.tel);
                 $("#c_type").html(customer.customer_type);
+
+                $("#vat").html(customer.tax_vat);
 
                 currentCustomer = customer;
               }
@@ -102,6 +105,11 @@
                 <dl class="dl-horizontal">
                   <dt><?= s2("credit") ?></dt>
                   <dd><span id="c_credit"></span></dd>
+                </dl>
+
+                <dl class="dl-horizontal">
+                  <dt><?= s2("tax_vat") ?></dt>
+                  <dd><span id="c_tax_vat"></span></dd>
                 </dl>
 
               </div>
@@ -217,6 +225,23 @@
                 <input type="number" class="form-control" id="p_quantity" step="0.01" min="0">
               </div>
 
+              <div class="form-group has-warning">
+                <label><?= s2("discount") ?></label><br/>
+                <label class="radio-inline">
+                  <input type="radio" name="p_discount" id="inlineRadio0" value="0" checked> 0 %
+                </label>
+                <?php
+                $discount = getConstant("discount");
+                for ($i=0; $i<count($discount); $i++) {
+                ?>
+                <label class="radio-inline">
+                  <input type="radio" name="p_discount" id="inlineRadio<?= $i+1 ?>" value="<?= $discount[$i] ?>"> <?= percentFormat($discount[$i]) ?>
+                </label>
+                <?php
+                }
+                ?>
+              </div>
+
               <p class="text-center">
                 <button type="button" class="btn btn-primary" onclick="javascript:addProductRow()">
                   <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
@@ -251,6 +276,10 @@
                       break;
                   }
 
+                  var discount = $('input[name=p_discount]:checked').val();
+                  var total = $("#p_price").val()*$("#p_quantity").val();
+                  var totalPrice = total-total*discount;
+
                   var btnDelete = "<button id='btnDelete"+(++rowCounter)+"' ";
                   btnDelete += "onclick='deleteProductRow("+rowCounter+")' ";
                   btnDelete += "class='btn btn-danger btn-xs' >";
@@ -262,8 +291,9 @@
                   var col4 = "<td>"+originalPrice+"</td>";
                   var col5 = "<td>"+$("#p_price").val()+"</td>";
                   var col6 = "<td>"+$("#p_quantity").val()+"</td>";
-                  var col7 = "<td>"+$("#p_price").val()*$("#p_quantity").val()+"</td>";
-                  var newRowContent = "<tr>"+col1+col2+col3+col4+col5+col6+col7+"</tr>";
+                  var col7 = "<td>"+(100*parseFloat(discount))+"%</td>";
+                  var col8 = "<td>"+totalPrice+"</td>";
+                  var newRowContent = "<tr>"+col1+col2+col3+col4+col5+col6+col7+col8+"</tr>";
                   $("#tableProduct tbody").append(newRowContent);
 
                   updateTotal();
@@ -284,10 +314,11 @@
                   var sum = 0;
                   for (var i = 0; i < productRows.length; i++) {
                     var row = $(productRows[i]);
-                    var colTotal = row.find('td:eq(6)');
+                    var colTotal = row.find('td:eq(7)');
                     sum += parseFloat(colTotal.html());
                   }
                   $("#total").html(sum);
+                  $("#grandTotal").html(sum + sum * parseFloat(currentCustomer.tax_vat) );
                 }
               </script>
             </div>
@@ -308,6 +339,7 @@
                   <th><?= s2("product_original_price") ?></th>
                   <th><?= s2("product_custom_price") ?></th>
                   <th><?= s2("product_quantity") ?></th>
+                  <th><?= s2("discount") ?></th>
                   <th><?= s2("product_total") ?></th>
                 </tr>
               </thead>
@@ -316,8 +348,18 @@
               </tbody>
               <tfoot>
                 <tr>
-                  <th colspan="6"><?= s2("product_total") ?></th>
+                  <th colspan="7"><?= s2("product_total") ?></th>
                   <th id="total">
+                  </th>
+                </tr>
+                <tr>
+                  <th colspan="7"><?= s2("tax_vat") ?></th>
+                  <th id="vat">
+                  </th>
+                </tr>
+                <tr>
+                  <th colspan="7"><?= s2("product_total") ?></th>
+                  <th id="grandTotal">
                   </th>
                 </tr>
               </tfoot>
@@ -361,6 +403,9 @@
               var colOriginalPrice = row.find('td:eq(3)').html();
               var colCustomPrice = row.find('td:eq(4)').html();
               var colQuantity = row.find('td:eq(5)').html();
+              var colDiscount = row.find('td:eq(6)').html();
+              colDiscount = colDiscount.replace("%", "");
+              colDiscount = parseFloat(colDiscount)/100;
 
               var product = {};
               product.id = colId
@@ -368,13 +413,15 @@
               product.originalPrice = colOriginalPrice;
               product.customPrice = colCustomPrice;
               product.quantity = colQuantity;
+              product.discount = colDiscount;
               products.push(product);
             }
 
             var dateToSend = {
               user_id: <?= getUserId()?>,
               customer_id: currentCustomer.id,
-              shipping_method: $("#inputShippingMethod").val();
+              shipping_method: $("#inputShippingMethod").val(),
+              tax_vat: currentCustomer.tax_vat,
               products: products
             };
 

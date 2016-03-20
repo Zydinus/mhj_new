@@ -317,4 +317,8 @@
     }
     return $sales_details;
   }
+
+  function percentFormat($val) {
+    return ($val*100)."%";
+  }
 ?>
