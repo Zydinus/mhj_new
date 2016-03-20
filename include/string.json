@@ -42,6 +42,10 @@
   "customer_name":{"en":"Customer Name","th":"ชื่อลูกค้า"},
   "contract_name":{"en":"Contract Name","th":"ชื่อผู้ติดต่อ"},
   "address":{"en":"Address","th":"ที่อยู่"},
+  "province":{"en":"province","th":"จังหวัด"},
+  "district":{"en":"district","th":"อำเภอ"},
   "tel":{"en":"Tel","th":"โทร"},
+  "credit":{"en":"credit","th":"เครดิต"},
+  "shipping_method":{"en":"Shipping Method","th":"วิธีการขนส่ง"},
   "type":{"en":"Type","th":"ชนิด"}
 }

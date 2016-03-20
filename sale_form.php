@@ -25,7 +25,9 @@
         <div class="col-lg-3">
           <h3><?= s2("search_customer") ?></h3>
           <p>
-            <input type="text" id="customerSearch" class="form-control" autocomplete="off" placeholder="<?= s2("customer_name") ?>">
+            <div class="form-group has-warning">
+              <input type="text" id="customerSearch" class="form-control" autocomplete="off" placeholder="<?= s2("customer_name") ?>">
+            </div>
             <script type="text/javascript">
               var currentCustomer;
               var $inputCustomer = $('#customerSearch');
@@ -55,6 +57,9 @@
                 $("#c_customer_name").html(customer.customer_name);
                 $("#c_contact_name").html(customer.contact_name);
                 $("#c_address_text").html(customer.address_text);
+                $("#c_province").html(customer.province);
+                $("#c_district").html(customer.district);
+                $("#c_credit").html(customer.credit);
                 $("#c_tel").html(customer.tel);
                 $("#c_type").html(customer.customer_type);
 
@@ -62,6 +67,14 @@
               }
             </script>
           </p>
+
+          <p>
+            <div class="form-group has-warning">
+              <label for="inputShippingMethod"><?= s2("shipping_method") ?></label>
+              <input type="text" id="inputShippingMethod" class="form-control" autocomplete="off">
+            </div>
+          </p>
+
         </div>
 
         <div class="col-lg-9">
@@ -70,30 +83,51 @@
               <h3 class="panel-title"><?= s2("customer") ?></h3>
             </div>
             <div class="panel-body">
-              <dl class="dl-horizontal">
-                <dt><?= s2("customer_name") ?></dt>
-                <dd><span id="c_customer_name"></span></dd>
-              </dl>
+              <div class="col-lg-6">
+                <dl class="dl-horizontal">
+                  <dt><?= s2("customer_name") ?></dt>
+                  <dd><span id="c_customer_name"></span></dd>
+                </dl>
 
-              <dl class="dl-horizontal">
-                <dt><?= s2("contract_name") ?></dt>
-                <dd><span id="c_contact_name"></span></dd>
-              </dl>
+                <dl class="dl-horizontal">
+                  <dt><?= s2("province") ?></dt>
+                  <dd><span id="c_province"></span></dd>
+                </dl>
 
-              <dl class="dl-horizontal">
-                <dt><?= s2("address") ?></dt>
-                <dd><span id="c_address_text"></span></dd>
-              </dl>
+                <dl class="dl-horizontal">
+                  <dt><?= s2("district") ?></dt>
+                  <dd><span id="c_district"></span></dd>
+                </dl>
 
-              <dl class="dl-horizontal">
-                <dt><?= s2("tel") ?></dt>
-                <dd><span id="c_tel"></span></dd>
-              </dl>
+                <dl class="dl-horizontal">
+                  <dt><?= s2("credit") ?></dt>
+                  <dd><span id="c_credit"></span></dd>
+                </dl>
 
-              <dl class="dl-horizontal">
-                <dt><?= s2("type") ?></dt>
-                <dd><span id="c_type"></span></dd>
-              </dl>
+              </div>
+
+              <div class="col-lg-6">
+                <dl class="dl-horizontal">
+                  <dt><?= s2("contract_name") ?></dt>
+                  <dd><span id="c_contact_name"></span></dd>
+                </dl>
+
+                <dl class="dl-horizontal">
+                  <dt><?= s2("address") ?></dt>
+                  <dd><span id="c_address_text"></span></dd>
+                </dl>
+
+                <dl class="dl-horizontal">
+                  <dt><?= s2("tel") ?></dt>
+                  <dd><span id="c_tel"></span></dd>
+                </dl>
+
+                <dl class="dl-horizontal">
+                  <dt><?= s2("type") ?></dt>
+                  <dd><span id="c_type"></span></dd>
+                </dl>
+
+              </div>
 
             </div>
           </div>
@@ -101,36 +135,6 @@
       </div>
 
       <div class="row">
-        <div class="col-lg-9">
-          <h3>Detail</h3>
-
-          <p>
-            <table class="table table-hover table-striped table-bordered" id="tableProduct">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>id</th>
-                  <th><?= s2("product_name") ?></th>
-                  <th><?= s2("product_original_price") ?></th>
-                  <th><?= s2("product_custom_price") ?></th>
-                  <th><?= s2("product_quantity") ?></th>
-                  <th><?= s2("product_total") ?></th>
-                </tr>
-              </thead>
-              <tbody>
-
-              </tbody>
-              <tfoot>
-                <tr>
-                  <th colspan="6"><?= s2("product_total") ?></th>
-                  <th id="total">
-                  </th>
-                </tr>
-              </tfoot>
-            </table>
-          </p>
-
-        </div>
 
         <div class="col-lg-3">
           <div class="panel panel-warning">
@@ -138,7 +142,7 @@
               <h3 class="panel-title"><?= s2("product_add") ?></h3>
             </div>
             <div class="panel-body">
-              <div class="form-group">
+              <div class="form-group has-warning">
                 <label for="productSearch"><?= s2("product_shortname") ?></label>
                 <input type="text" id="productSearch" class="form-control" autocomplete="off">
               </div>
@@ -200,15 +204,15 @@
 
               <div class="form-group">
                 <label for="p_product_name"><?= s2("product_name") ?></label>
-                <input type="text" class="form-control" id="p_product_name">
+                <input type="text" class="form-control" id="p_product_name" readonly>
               </div>
 
-              <div class="form-group">
+              <div class="form-group has-warning">
                 <label for="p_price"><?= s2("product_price") ?></label>
                 <input type="number" class="form-control" id="p_price" step="0.01" min="0">
               </div>
 
-              <div class="form-group">
+              <div class="form-group has-warning">
                 <label for="p_quantity"><?= s2("product_quantity") ?></label>
                 <input type="number" class="form-control" id="p_quantity" step="0.01" min="0">
               </div>
@@ -289,8 +293,40 @@
             </div>
           </div>
 
+        </div>
+
+        <div class="col-lg-9">
+          <h3>Detail</h3>
+
+          <p>
+            <table class="table table-hover table-striped table-bordered" id="tableProduct">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>id</th>
+                  <th><?= s2("product_name") ?></th>
+                  <th><?= s2("product_original_price") ?></th>
+                  <th><?= s2("product_custom_price") ?></th>
+                  <th><?= s2("product_quantity") ?></th>
+                  <th><?= s2("product_total") ?></th>
+                </tr>
+              </thead>
+              <tbody>
+
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th colspan="6"><?= s2("product_total") ?></th>
+                  <th id="total">
+                  </th>
+                </tr>
+              </tfoot>
+            </table>
+          </p>
 
         </div>
+
+
       </div>
 
       <div class="row">
@@ -338,6 +374,7 @@
             var dateToSend = {
               user_id: <?= getUserId()?>,
               customer_id: currentCustomer.id,
+              shipping_method: $("#inputShippingMethod").val();
               products: products
             };
 

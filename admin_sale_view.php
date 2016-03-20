@@ -45,6 +45,11 @@
           </dl>
 
           <dl class="dl-horizontal">
+            <dt>shipping method</dt>
+            <dd><?= $sale["shipping_method"] ?></dd>
+          </dl>
+
+          <dl class="dl-horizontal">
             <dt>sale_price_level</dt>
             <dd><?= $customer["sale_price_level"] ?></dd>
           </dl>

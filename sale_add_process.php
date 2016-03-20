@@ -11,12 +11,13 @@
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $customer_id = testInput($_POST["customer_id"]);
     $user_id = testInput($_POST["user_id"]);
+    $shipping_method = testInput($_POST["shipping_method"]);
   }
 
   $products = $_POST["products"];
 
-  $sql_sale = "INSERT INTO sales (user_id, customer_id, created_at, updated_at)
-          VALUES ($user_id, $customer_id, now(), now())";
+  $sql_sale = "INSERT INTO sales (user_id, customer_id, shipping_method, created_at, updated_at)
+          VALUES ($user_id, $customer_id, '$shipping_method',now(), now())";
 
   // echo $sql;
   if ($conn->query($sql_sale) === TRUE) {

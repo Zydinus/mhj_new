@@ -206,6 +206,13 @@
                 </div>
               </div>
 
+              <div class="form-group">
+                <label for="inputProvince" class="col-md-3 control-label">Province</label>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" name="inputProvince" id="inputProvince" placeholder="Province">
+                </div>
+              </div>
+
               <datalist id="regions">
                 <?php
                 $regions = getConstant("regions");
@@ -219,13 +226,6 @@
                 <label for="inputRegion" class="col-md-3 control-label">Region</label>
                 <div class="col-md-9">
                   <input list="regions" class="form-control" name="inputRegion" id="inputRegion">
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label for="inputProvince" class="col-md-3 control-label">Province</label>
-                <div class="col-md-9">
-                  <input type="text" class="form-control" name="inputProvince" id="inputProvince" placeholder="Province">
                 </div>
               </div>
 

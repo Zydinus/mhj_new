@@ -43,7 +43,7 @@
           `created_at`, `updated_at`)
           VALUES (
             '$inputShortName', '$inputTitle', '$inputName', '$inputFirstContactDate',
-            '$inputContactName', $inputTaxVat, '$inputAddress', '$inputRegion',
+            '$inputContactName', '$inputTaxVat', '$inputAddress', '$inputRegion',
             '$inputProvince', '$inputDistrict', '$inputZip', $inputDistance,
             '$inputTel', '$inputFax', '$inputMobileTel', '$inputEmail',
             '$optionsCustomerType', '$optionsPayment', '$optionsCredit',
