@@ -43,7 +43,7 @@
                   pc.*, COUNT(p.id) product_count
               FROM
                   product_categories pc
-                      INNER JOIN
+                      LEFT JOIN
                   products p ON pc.id = p.category_id
               GROUP BY pc.id";
     } else {
@@ -51,7 +51,7 @@
                   pc.*, COUNT(p.id) product_count
               FROM
                   product_categories pc
-                      INNER JOIN
+                      LEFT JOIN
                   products p ON pc.id = p.category_id
               GROUP BY pc.id
               WHERE id = $option";

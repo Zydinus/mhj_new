@@ -230,9 +230,21 @@
               </div>
 
               <div class="form-group">
-                <label for="inputUnit" class="col-md-3 control-label">Unit</label>
+                <label class="col-md-3 control-label">Unit</label>
                 <div class="col-md-9">
-                  <input type="text" class="form-control" name="inputUnit" id="inputUnit" placeholder="Unit" required>
+                  <?php
+                  $units = getConstant("units");
+                  for ($i=0; $i<count($units); $i++) {
+                  ?>
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="inputUnit" id="inputUnit<?= $i?>" value="<?= $units[$i]?>">
+                      <?= $units[$i]?>
+                    </label>
+                  </div>
+                  <?php
+                  }
+                  ?>
                 </div>
               </div>
 

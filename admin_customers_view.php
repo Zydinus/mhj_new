@@ -195,7 +195,8 @@
               <div class="form-group">
                 <label for="inputTaxVat" class="col-md-3 control-label">Tax Vat</label>
                 <div class="col-md-9">
-                  <input type="text" class="form-control" name="inputTaxVat" id="inputTaxVat">
+                  <input type="number" class="form-control" name="inputTaxVat" id="inputTaxVat" step="0.01">
+                  <p class="help-block"><?= s2("tax_vat_help_text");?></p>
                 </div>
               </div>
 
