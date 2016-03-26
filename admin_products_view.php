@@ -251,7 +251,7 @@
               <div class="form-group">
                 <label for="inputWeight" class="col-md-3 control-label">Weight</label>
                 <div class="col-md-9">
-                  <input type="number" class="form-control" name="inputWeight" id="inputWeight" step="0.01" placeholder="XX.XX" required>
+                  <input type="number" class="form-control" name="inputWeight" id="inputWeight" step="0.0001" placeholder="XX.XX" required>
                 </div>
               </div>
 
