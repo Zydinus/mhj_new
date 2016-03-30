@@ -318,6 +318,87 @@
     return $sales_details;
   }
 
+  function getTodayBuyesWithTotal($conn) {
+    $buyes = [];
+
+    $sql = "SELECT * FROM buyes_with_total_view
+      WHERE DATE(sale_created_at) = DATE(NOW())
+      ORDER BY buy_id DESC";
+
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+      // output data of each row
+      while($row = $result->fetch_assoc()) {
+        $buyes[] = $row;
+      }
+    }
+    return $buyes;
+  }
+
+  function getBuyesWithTotal($conn, $begin_date, $end_date) {
+    $buyes = [];
+
+    $sql = "SELECT * FROM buyes_with_total_and_is_edited_view
+      WHERE buy_created_at BETWEEN '$begin_date 0:0:0' AND '$end_date 23:59:59'
+      ORDER BY buy_id DESC";
+
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+      // output data of each row
+      while($row = $result->fetch_assoc()) {
+        $buyes[] = $row;
+      }
+    }
+    return $buyes;
+  }
+
+  function getBuyesWithCustomerId($conn, $customer_id) {
+    $buyes = [];
+
+    $sql = "SELECT * FROM buyes_with_total_view
+      WHERE customer_id = $customer_id
+      ORDER BY buye_created_at";
+
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+      // output data of each row
+      while($row = $result->fetch_assoc()) {
+        $buyes[] = $row;
+      }
+    }
+    return $buyes;
+  }
+
+  function getBuyesById($conn, $id) {
+    $sql = "SELECT * FROM buyes_with_total_view
+      WHERE buy_id = $id";
+
+    $result = $conn->query($sql);
+    if ($result->num_rows == 1) {
+      // output data of each row
+      while($row = $result->fetch_assoc()) {
+        $sale = $row;
+      }
+    }
+    return $sale;
+  }
+
+  function getBuyDetailsByBuyId($conn, $buy_id) {
+    $buyes_details = [];
+
+    $sql = "SELECT * FROM buyes_details_with_total_and_is_edited_view
+      WHERE buy_id = $buy_id";
+
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+      // output data of each row
+      while($row = $result->fetch_assoc()) {
+        $buyes_details[] = $row;
+      }
+    }
+    return $buyes_details;
+  }
+
   function percentFormat($val) {
     return ($val*100)."%";
   }
