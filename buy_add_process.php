@@ -26,6 +26,8 @@
     $buy["buy_id"] = $buy_id;
 
     foreach ($products as $product) {
+      $product_quantity = $product["quantity"]===""? 0 : $product["quantity"];
+      $product_quantity_b = $product["quantityB"]===""? 0 : $product["quantityB"];
       $sql_buy_detail = "INSERT INTO buyes_details (
         buy_id,
         product_id,
@@ -44,8 +46,8 @@
         $product[priceLevel],
         $product[originalPrice],
         $product[customPrice],
-        $product[quantity],
-        $product[quantityB],
+        $product_quantity,
+        $product_quantity_b,
         $product[discount],
         now(),
         now()

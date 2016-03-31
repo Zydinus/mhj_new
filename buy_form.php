@@ -116,7 +116,7 @@
 
               <div class="col-lg-6">
                 <dl class="dl-horizontal">
-                  <dt><?= s2("contract_name") ?></dt>
+                  <dt><?= s2("contact_name") ?></dt>
                   <dd><span id="c_contact_name"></span></dd>
                 </dl>
 
@@ -321,7 +321,7 @@
                   var sum = 0;
                   for (var i = 0; i < productRows.length; i++) {
                     var row = $(productRows[i]);
-                    var colTotal = row.find('td:eq(7)');
+                    var colTotal = row.find('td:eq(8)');
                     sum += parseFloat(colTotal.html());
                   }
                   $("#total").html(sum);

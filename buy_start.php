@@ -47,7 +47,7 @@
                 <tr>
                   <td><?= $sale["customer_name"]?></td>
                   <td><?= $sale["contact_name"]?></td>
-                  <td><?= $sale["sale_created_at"]?></td>
+                  <td><?= $sale["buy_created_at"]?></td>
                   <td><?= $sale["total"]?></td>
                   <td><?= $sale["user_name"]?></td>
                   <td>.</td>
