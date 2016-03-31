@@ -23,6 +23,7 @@ function nevbarItem($destination, $glyphicon, $text) {
       <ul class="nav navbar-nav">
         <?= nevbarItem("home.php", "glyphicon-home", s2("home")) ?>
         <?= nevbarItem("sale_start.php", "glyphicon-send", s2("sale_system")) ?>
+        <?= nevbarItem("buy_start.php", "glyphicon-shopping-cart", s2("buy_system")) ?>
         <?php if ( getUserLevel()==0 ) { ?>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -36,6 +37,7 @@ function nevbarItem($destination, $glyphicon, $text) {
             <?= nevbarItem("admin_users_view.php", "glyphicon-user", s2("user_dashboard")) ?>
             <li role="separator" class="divider"></li>
             <?= nevbarItem("admin_sales_view.php", "glyphicon-send", s2("sale_dashboard")) ?>
+            <?= nevbarItem("admin_buyes_view.php", "glyphicon-shopping-cart", s2("buy_dashboard")) ?>
           </ul>
         </li>
         <?php } ?>

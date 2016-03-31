@@ -322,7 +322,7 @@
     $buyes = [];
 
     $sql = "SELECT * FROM buyes_with_total_view
-      WHERE DATE(sale_created_at) = DATE(NOW())
+      WHERE DATE(buy_created_at) = DATE(NOW())
       ORDER BY buy_id DESC";
 
     $result = $conn->query($sql);
@@ -357,7 +357,7 @@
 
     $sql = "SELECT * FROM buyes_with_total_view
       WHERE customer_id = $customer_id
-      ORDER BY buye_created_at";
+      ORDER BY buy_created_at";
 
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {

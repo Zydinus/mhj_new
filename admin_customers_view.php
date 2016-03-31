@@ -80,28 +80,28 @@
           <thead>
             <tr>
               <th>id</th>
-              <th>short_name</th>
-              <th>title</th>
-              <th>name</th>
-              <th>first_contact_date</th>
-              <th>contact_name</th>
-              <th>tax_vat</th>
-              <th>address_text</th>
-              <th>region</th>
-              <th>province</th>
-              <th>district</th>
-              <th>zip</th>
-              <th>distance</th>
-              <th>tel</th>
-              <th>fax</th>
-              <th>mobile_tel</th>
-              <th>email</th>
-              <th>customer_type</th>
-              <th>payment</th>
-              <th>credit</th>
+              <th><?= s2("short_name")?></th>
+              <th><?= s2("customer_title")?></th>
+              <th><?= s2("customer_name")?></th>
+              <th><?= s2("first_contact_date")?></th>
+              <th><?= s2("contact_name")?></th>
+              <th><?= s2("tax_vat")?></th>
+              <th><?= s2("address")?></th>
+              <th><?= s2("region")?></th>
+              <th><?= s2("province")?></th>
+              <th><?= s2("district")?></th>
+              <th><?= s2("zip")?></th>
+              <th><?= s2("distance")?></th>
+              <th><?= s2("tel")?></th>
+              <th><?= s2("fax")?></th>
+              <th><?= s2("mobile_tel")?></th>
+              <th><?= s2("email")?></th>
+              <th><?= s2("customer_type")?></th>
+              <th><?= s2("payment")?></th>
+              <th><?= s2("credit")?></th>
               <th>sale price level</th>
               <th>buy price level</th>
-              <th>command</th>
+              <th><?= s2("command")?></th>
             </tr>
           </thead>
           <tbody>
@@ -158,42 +158,42 @@
               <input type="hidden" name="source" value="admin_customers_view.php" required>
 
               <div class="form-group">
-                <label for="inputShortName" class="col-md-3 control-label">Short Name</label>
+                <label for="inputShortName" class="col-md-3 control-label"><?= s2("short_name")?></label>
                 <div class="col-md-9">
-                  <input type="text" class="form-control" name="inputShortName" id="inputShortName" placeholder="Short Name" required>
+                  <input type="text" class="form-control" name="inputShortName" id="inputShortName" placeholder="<?= s2("short_name")?>" required>
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="inputTitle" class="col-md-3 control-label">Title</label>
+                <label for="inputTitle" class="col-md-3 control-label"><?= s2("customer_title")?></label>
                 <div class="col-md-9">
-                  <input type="text" class="form-control" name="inputTitle" id="inputTitle" placeholder="Title">
+                  <input type="text" class="form-control" name="inputTitle" id="inputTitle" placeholder="<?= s2("customer_title")?>">
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="inputName" class="col-md-3 control-label">Name</label>
+                <label for="inputName" class="col-md-3 control-label"><?= s2("customer_name")?></label>
                 <div class="col-md-9">
-                  <input type="text" class="form-control" name="inputName" id="inputName" placeholder="Name" required>
+                  <input type="text" class="form-control" name="inputName" id="inputName" placeholder="<?= s2("customer_name")?>" required>
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="inputFirstContactDate" class="col-md-3 control-label">First Contact Date</label>
+                <label for="inputFirstContactDate" class="col-md-3 control-label"><?= s2("first_contact_date")?></label>
                 <div class="col-md-9">
                   <input type="date" class="form-control" name="inputFirstContactDate" id="inputFirstContactDate">
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="inputContactName" class="col-md-3 control-label">Contact Name</label>
+                <label for="inputContactName" class="col-md-3 control-label"><?= s2("contact_name")?></label>
                 <div class="col-md-9">
-                  <input type="text" class="form-control" name="inputContactName" id="inputContactName" placeholder="Contact Name" required>
+                  <input type="text" class="form-control" name="inputContactName" id="inputContactName" placeholder="<?= s2("contact_name")?>" required>
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="inputTaxVat" class="col-md-3 control-label">Tax Vat</label>
+                <label for="inputTaxVat" class="col-md-3 control-label"><?= s2("tax_vat")?></label>
                 <div class="col-md-9">
                   <input type="number" class="form-control" name="inputTaxVat" id="inputTaxVat" step="0.01">
                   <p class="help-block"><?= s2("tax_vat_help_text");?></p>
@@ -201,16 +201,16 @@
               </div>
 
               <div class="form-group">
-                <label for="inputAddress" class="col-md-3 control-label">Address</label>
+                <label for="inputAddress" class="col-md-3 control-label"><?= s2("address")?></label>
                 <div class="col-md-9">
                   <textarea type="text" class="form-control" name="inputAddress" id="inputAddress" rows="4"></textarea>
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="inputProvince" class="col-md-3 control-label">Province</label>
+                <label for="inputProvince" class="col-md-3 control-label"><?= s2("province")?></label>
                 <div class="col-md-9">
-                  <input type="text" class="form-control" name="inputProvince" id="inputProvince" placeholder="Province">
+                  <input type="text" class="form-control" name="inputProvince" id="inputProvince" placeholder="<?= s2("province")?>">
                 </div>
               </div>
 
@@ -224,63 +224,63 @@
               </datalist>
 
               <div class="form-group">
-                <label for="inputRegion" class="col-md-3 control-label">Region</label>
+                <label for="inputRegion" class="col-md-3 control-label"><?= s2("region")?></label>
                 <div class="col-md-9">
                   <input list="regions" class="form-control" name="inputRegion" id="inputRegion">
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="inputDistrict" class="col-md-3 control-label">District</label>
+                <label for="inputDistrict" class="col-md-3 control-label"><?= s2("district")?></label>
                 <div class="col-md-9">
-                  <input type="text" class="form-control" name="inputDistrict" id="inputDistrict" placeholder="District">
+                  <input type="text" class="form-control" name="inputDistrict" id="inputDistrict" placeholder="<?= s2("district")?>">
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="inputZip" class="col-md-3 control-label">Zip</label>
+                <label for="inputZip" class="col-md-3 control-label"><?= s2("zip")?></label>
                 <div class="col-md-9">
-                  <input type="text" class="form-control" name="inputZip" id="inputZip" placeholder="Zip">
+                  <input type="text" class="form-control" name="inputZip" id="inputZip" placeholder="<?= s2("zip")?>">
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="inputDistance" class="col-md-3 control-label">Distance</label>
+                <label for="inputDistance" class="col-md-3 control-label"><?= s2("distance")?></label>
                 <div class="col-md-9">
                   <input type="number" class="form-control" name="inputDistance" id="inputDistance" step="0.01" placeholder="xx.xx">
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="inputTel" class="col-md-3 control-label">Tel</label>
+                <label for="inputTel" class="col-md-3 control-label"><?= s2("tel")?></label>
                 <div class="col-md-9">
                   <input type="text" class="form-control" name="inputTel" id="inputTel" placeholder="xx-xxxx-xxxx">
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="inputFax" class="col-md-3 control-label">Fax</label>
+                <label for="inputFax" class="col-md-3 control-label"><?= s2("fax")?></label>
                 <div class="col-md-9">
                   <input type="text" class="form-control" name="inputFax" id="inputFax" placeholder="xx-xxxx-xxxx">
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="inputMobileTel" class="col-md-3 control-label">Mobile Tel</label>
+                <label for="inputMobileTel" class="col-md-3 control-label"><?= s2("mobile_tel")?></label>
                 <div class="col-md-9">
                   <input type="text" class="form-control" name="inputMobileTel" id="inputMobileTel" placeholder="xx-xxxx-xxxx">
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="inputEmail" class="col-md-3 control-label">Email</label>
+                <label for="inputEmail" class="col-md-3 control-label"><?= s2("email")?></label>
                 <div class="col-md-9">
                   <input type="email" class="form-control" name="inputEmail" id="inputEmail" placeholder="xxx@yyy.zzz">
                 </div>
               </div>
 
               <div class="form-group">
-                <label class="col-md-3 control-label">Customer Type</label>
+                <label class="col-md-3 control-label"><?= s2("customer_type")?></label>
                 <div class="col-md-9">
                   <?php
                   $customer_types = getConstant("customer_types");
@@ -299,7 +299,7 @@
               </div>
 
               <div class="form-group">
-                <label class="col-md-3 control-label">Payment</label>
+                <label class="col-md-3 control-label"><?= s2("payment")?></label>
                 <div class="col-md-9">
                   <?php
                   $payments = getConstant("payments");
@@ -318,7 +318,7 @@
               </div>
 
               <div class="form-group">
-                <label class="col-md-3 control-label">Credit</label>
+                <label class="col-md-3 control-label"><?= s2("credit")?></label>
                 <div class="col-md-9">
                   <?php
                   $credits = getConstant("credits");

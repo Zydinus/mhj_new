@@ -116,19 +116,19 @@
               <table class="table table-striped">
                 <thead>
                   <tr>
-                    <th>group</th>
-                    <th>custom_id</th>
-                    <th>name</th>
-                    <th>short_name</th>
-                    <th>unit</th>
-                    <th>weight</th>
+                    <th><?= s2("product_group")?></th>
+                    <th><?= s2("product_custom_id")?></th>
+                    <th><?= s2("product_name")?></th>
+                    <th><?= s2("product_shortname")?></th>
+                    <th><?= s2("product_unit")?></th>
+                    <th><?= s2("product_weight")?></th>
                     <th>sale price 1</th>
                     <th>sale price 2</th>
                     <th>sale price 3</th>
                     <th>buy price 1</th>
                     <th>buy price 2</th>
                     <th>buy price 3</th>
-                    <th>command</th>
+                    <th><?= s2("command")?></th>
                   </tr>
                 </thead>
                 <tbody>

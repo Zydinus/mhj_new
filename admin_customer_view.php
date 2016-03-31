@@ -57,7 +57,7 @@
           </dl>
 
           <dl class="dl-horizontal">
-            <dt>Name</dt>
+            <dt><?= s2("customer_name")?></dt>
             <dd><?= $customer["name"] ?></dd>
           </dl>
 
