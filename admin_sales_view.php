@@ -71,7 +71,7 @@
             <thead>
               <tr>
                 <th><?= s2("customer_name") ?></th>
-                <th><?= s2("contract_name") ?></th>
+                <th><?= s2("contact_name") ?></th>
                 <th><?= s2("date_time") ?></th>
                 <th><?= s2("total") ?></th>
                 <th><?= s2("by_user") ?></th>

@@ -260,7 +260,7 @@
                   if ($("#productSearch").val() === "") {
                     return;
                   }
-                  if ($("#p_quantity").val() === "") {
+                  if ($("#p_quantity").val() === "" && $("#p_quantity_b").val() === "") {
                     return;
                   }
                   if (selectedProduct==null) {
@@ -395,7 +395,7 @@
 
         <script type="text/javascript">
           function submitBuy() {
-            if (currentCustomer.id===undefined || $("#total").html()=="" || parseFloat($("#total").html()) == 0) {
+            if (currentCustomer.id===undefined || $("#total").html()=="") {
               return;
             }
 
