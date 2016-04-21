@@ -116,7 +116,7 @@
 
               <div class="col-lg-6">
                 <dl class="dl-horizontal">
-                  <dt><?= s2("contract_name") ?></dt>
+                  <dt><?= s2("contact_name") ?></dt>
                   <dd><span id="c_contact_name"></span></dd>
                 </dl>
 
