@@ -37,7 +37,7 @@
   "product_weight":{"en":"weight","th":"น้ำหนัก"},
   "product_quantity":{"en":"Quantity","th":"จำนวนสินค้า"},
   "product_original_price":{"en":"Original Price","th":"ราคาสินค้ามาตรฐาน"},
-  "product_custom_price":{"en":"Custom Quantity","th":"ราคาสินค้าแก้ไข"},
+  "product_custom_price":{"en":"Custom Quantity","th":"ราคาสินค้าสุทธิ"},
   "product_total":{"en":"Total","th":"รวม"},
   "customer":{"en":"Customer","th":"ลูกค้า"},
   "customer_dashboard":{"en":"Customer Dashboard","th":"Customer Dashboard"},

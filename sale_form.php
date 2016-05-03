@@ -64,7 +64,7 @@
                 $("#c_tel").html(customer.tel);
                 $("#c_type").html(customer.customer_type);
 
-                $("#vat").html(customer.tax_vat);
+                // $("#vat").html(customer.tax_vat);
 
                 currentCustomer = customer;
               }
@@ -296,7 +296,8 @@
                   var newRowContent = "<tr>"+col1+col2+col3+col4+col5+col6+col7+col8+"</tr>";
                   $("#tableProduct tbody").append(newRowContent);
 
-                  updateTotal();
+                  // updateTotal();
+                  updateTotalVatGrandTotal();
 
                   $("#productSearch").val("");
                   $("#p_product_name").val("");
@@ -309,7 +310,7 @@
                   updateTotal();
                 }
 
-                function updateTotal() {
+                function updateTotalVatGrandTotal() {
                   var productRows = $('#tableProduct').find('tbody').find('tr');
                   var sum = 0;
                   for (var i = 0; i < productRows.length; i++) {
@@ -317,7 +318,23 @@
                     var colTotal = row.find('td:eq(7)');
                     sum += parseFloat(colTotal.html());
                   }
+
+                  updateTotal(sum);
+                  updateVat(sum);
+                  updateGrandTotal(sum);
+                  // $("#total").html(sum);
+                  // $("#grandTotal").html(sum + sum * parseFloat(currentCustomer.tax_vat) );
+                }
+
+                function updateTotal(sum) {
                   $("#total").html(sum);
+                }
+
+                function updateVat(sum) {
+                  $("#vat").html(sum * parseFloat(currentCustomer.tax_vat));
+                }
+
+                function updateGrandTotal(sum) {
                   $("#grandTotal").html(sum + sum * parseFloat(currentCustomer.tax_vat) );
                 }
               </script>

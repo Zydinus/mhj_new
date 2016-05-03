@@ -204,7 +204,7 @@
     $customers = [];
 
     $sql = "SELECT
-      `id`, `short_name` as name, `title`, `name` as customer_name,
+      `id`, `short_name`, CONCAT(short_name, ' - ', name) as name, `title`, `name` as customer_name,
       `first_contact_date`, `contact_name`, `tax_vat`, `address_text`,
       `region`, `province`, `district`, `zip`,
       `distance`, `tel`, `fax`, `mobile_tel`,
