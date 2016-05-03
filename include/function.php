@@ -53,8 +53,8 @@
                   product_categories pc
                       LEFT JOIN
                   products p ON pc.id = p.category_id
-              GROUP BY pc.id
-              WHERE id = $option";
+              WHERE pc.id = $option
+              GROUP BY pc.id";
     }
 
     $result = $conn->query($sql);
