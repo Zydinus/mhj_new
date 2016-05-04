@@ -8,5 +8,8 @@
     <div class="">
       <a href="migrate_customer.php">Migrate Customer</a>
     </div>
+    <div class="">
+      <a href="migrate_product.php">Migrate Product</a>
+    </div>
   </body>
 </html>
