@@ -32,7 +32,7 @@ if ($uploadOk == 0) {
 <?php
 $sql = "INSERT INTO products (
           category_id, name, short_name, custom_id,
-          unit, weight, product_group,
+          unit, weight, product_group_1,product_group_2,product_group_3,
           created_at, updated_at)
         VALUES ";
 $sql_value = "";
@@ -44,7 +44,7 @@ if ($file) {
     $entry = explode(",", $line);
     $sql_value .= "(";
     $sql_value .= "$entry[0],'$entry[1]','$entry[2]','$entry[3]',";
-    $sql_value .= "'$entry[4]','$entry[5]','$entry[6]',";
+    $sql_value .= "'$entry[4]','$entry[5]','$entry[6]','$entry[7]','$entry[8]',";
     $sql_value .= "now(),now()";
     $sql_value .= "), ";
     echo $line. "<br />";
