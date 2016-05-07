@@ -165,6 +165,21 @@
         </dl>
 
         <dl class="dl-horizontal">
+          <dt><?= s2("product_group")?> 1</dt>
+          <dd><?= $product["product_group_1"] ?></dd>
+        </dl>
+
+        <dl class="dl-horizontal">
+          <dt><?= s2("product_group")?> 2</dt>
+          <dd><?= $product["product_group_2"] ?></dd>
+        </dl>
+
+        <dl class="dl-horizontal">
+          <dt><?= s2("product_group")?> 3</dt>
+          <dd><?= $product["product_group_3"] ?></dd>
+        </dl>
+
+        <dl class="dl-horizontal">
           <dt>Name</dt>
           <dd><?= $product["name"] ?></dd>
         </dl>

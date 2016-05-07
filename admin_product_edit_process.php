@@ -15,7 +15,9 @@
     $inputShortName = testInput($_POST["inputShortName"]);
     $inputUnit = testInput($_POST["inputUnit"]);
     $inputWeight = testInput($_POST["inputWeight"]);
-    $inputGroup = testInput($_POST["inputGroup"]);
+    $inputGroup1 = testInput($_POST["inputGroup1"]);
+    $inputGroup2 = testInput($_POST["inputGroup2"]);
+    $inputGroup3 = testInput($_POST["inputGroup3"]);
     $optionsCategory = testInput($_POST["optionsCategory"]);
     $source = testInput($_POST["source"]);
   }
@@ -26,7 +28,9 @@
             short_name='$inputShortName',
             unit='$inputUnit',
             weight=$inputWeight,
-            product_group='$inputGroup',
+            product_group_1='$inputGroup1',
+            product_group_2='$inputGroup2',
+            product_group_3='$inputGroup3',
             category_id=$optionsCategory,
             updated_at=now()
           WHERE id=$inputId;";

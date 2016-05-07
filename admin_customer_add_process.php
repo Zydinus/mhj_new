@@ -8,6 +8,7 @@
 
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $source = $_POST["source"];
+    $inputCustomId = testInput($_POST["inputCustomId"]);
     $inputShortName = testInput($_POST["inputShortName"]);
     $inputTitle = testInput($_POST["inputTitle"]);
     $inputName = testInput($_POST["inputName"]);
@@ -34,7 +35,7 @@
   }
 
   $sql = "INSERT INTO customers (
-          `short_name`, `title`, `name`, `first_contact_date`,
+          `custom_id`, `short_name`, `title`, `name`, `first_contact_date`,
           `contact_name`, `tax_vat`, `address_text`, `region`,
           `province`, `district`, `zip`, `distance`,
           `tel`, `fax`, `mobile_tel`, `email`,
@@ -42,7 +43,7 @@
           `sale_price_level`, `buy_price_level`,
           `created_at`, `updated_at`)
           VALUES (
-            '$inputShortName', '$inputTitle', '$inputName', '$inputFirstContactDate',
+            '$inputCustomId', '$inputShortName', '$inputTitle', '$inputName', '$inputFirstContactDate',
             '$inputContactName', '$inputTaxVat', '$inputAddress', '$inputRegion',
             '$inputProvince', '$inputDistrict', '$inputZip', $inputDistance,
             '$inputTel', '$inputFax', '$inputMobileTel', '$inputEmail',

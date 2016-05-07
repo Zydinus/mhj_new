@@ -80,6 +80,7 @@
           <thead>
             <tr>
               <th>id</th>
+              <th><?= s2("customer_custom_id")?></th>
               <th><?= s2("short_name")?></th>
               <th><?= s2("customer_title")?></th>
               <th><?= s2("customer_name")?></th>
@@ -110,6 +111,7 @@
             foreach ( $customers as $customer) {
               echo "<tr>";
               echo "<td>$customer[id]</td>";
+              echo "<td>$customer[custom_id]</td>";
               echo "<td>$customer[short_name]</td>";
               echo "<td>$customer[title]</td>";
               echo "<td>$customer[name]</td>";
@@ -156,6 +158,13 @@
           <div class="modal-body">
             <form action="admin_customer_add_process.php" method="post" class="form-horizontal" name="addCustomer" id="addCustomer">
               <input type="hidden" name="source" value="admin_customers_view.php" required>
+
+              <div class="form-group">
+                <label for="inputCustomId" class="col-md-3 control-label"><?= s2("short_name")?></label>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" name="inputCustomId" id="inputCustomId" placeholder="<?= s2("customer_custom_id")?>" required>
+                </div>
+              </div>
 
               <div class="form-group">
                 <label for="inputShortName" class="col-md-3 control-label"><?= s2("short_name")?></label>

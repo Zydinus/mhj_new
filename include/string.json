@@ -43,6 +43,7 @@
   "customer_dashboard":{"en":"Customer Dashboard","th":"Customer Dashboard"},
   "customer_add":{"en":"Add Customer","th":"เพิ่มลูกค้า"},
   "customer_all":{"en":"All Customer","th":"ลูกค้าทั้งหมด"},
+  "customer_custom_id":{"en":"Custom id","th":"รหัสลูกค้า"},
   "customer_name":{"en":"Customer Name","th":"ชื่อลูกค้า"},
   "short_name":{"en":"short_name","th":"ชื่อย่อ"},
   "customer_title":{"en":"title","th":"คำนำหน้า"},

@@ -42,7 +42,9 @@
           $button .= "data-shortname='$product[short_name]' ";
           $button .= "data-unit='$product[unit]' ";
           $button .= "data-weight='$product[weight]' ";
-          $button .= "data-group='$product[product_group]' ";
+          $button .= "data-group1='$product[product_group_1]' ";
+          $button .= "data-group2='$product[product_group_2]' ";
+          $button .= "data-group3='$product[product_group_3]' ";
           $button .= "data-category='$product[category_id]' >";
           $button .= "<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>";
           $button .= "</button>";
@@ -116,7 +118,9 @@
               <table class="table table-striped">
                 <thead>
                   <tr>
-                    <th><?= s2("product_group")?></th>
+                    <th><?= s2("product_group")?> 1</th>
+                    <th><?= s2("product_group")?> 2</th>
+                    <th><?= s2("product_group")?> 3</th>
                     <th><?= s2("product_custom_id")?></th>
                     <th><?= s2("product_name")?></th>
                     <th><?= s2("product_shortname")?></th>
@@ -138,7 +142,9 @@
 
                   foreach ( $products as $product) {
                     echo "<tr>";
-                    echo "<td>".$product["product_group"]."</td>";
+                    echo "<td>".$product["product_group_1"]."</td>";
+                    echo "<td>".$product["product_group_2"]."</td>";
+                    echo "<td>".$product["product_group_3"]."</td>";
                     echo "<td>".$product["custom_id"]."</td>";
                     echo "<td>".$product["name"]."</td>";
                     echo "<td>".$product["short_name"]."</td>";
@@ -202,9 +208,23 @@
               <input type="hidden" name="source" value="admin_products_view.php" required>
 
               <div class="form-group">
-                <label for="inputGroup" class="col-md-3 control-label">Group</label>
+                <label for="inputGroup1" class="col-md-3 control-label">Group 1</label>
                 <div class="col-md-9">
-                  <input type="text" class="form-control" name="inputGroup" id="inputGroup" placeholder="Group" required>
+                  <input type="text" class="form-control" name="inputGroup1" id="inputGroup1" placeholder="Group1" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="inputGroup2" class="col-md-3 control-label">Group 2</label>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" name="inputGroup2" id="inputGroup2" placeholder="Group2" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="inputGroup3" class="col-md-3 control-label">Group 3</label>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" name="inputGroup3" id="inputGroup3" placeholder="Group3" required>
                 </div>
               </div>
 
@@ -338,9 +358,23 @@
               <input type="hidden" name="source" value="admin_products_view.php">
 
               <div class="form-group">
-                <label for="inputGroupEdit" class="col-md-3 control-label">Custom id</label>
+                <label for="inputGroupEdit1" class="col-md-3 control-label">Group1</label>
                 <div class="col-md-9">
-                  <input type="text" class="form-control" name="inputGroup" id="inputGroupEdit" placeholder="Custom id">
+                  <input type="text" class="form-control" name="inputGroup1" id="inputGroupEdit1" placeholder="Group 1">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="inputGroupEdit2" class="col-md-3 control-label">Group2</label>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" name="inputGroup2" id="inputGroupEdit2" placeholder="Group 2">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="inputGroupEdit3" class="col-md-3 control-label">Group3</label>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" name="inputGroup3" id="inputGroupEdit3" placeholder="Group 3">
                 </div>
               </div>
 
@@ -413,7 +447,9 @@
       $('#editProductModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget); // Button that triggered the modal
         var id = button.data('id'); // Extract info from data-* attributes
-        var group = button.data('group');
+        var group1 = button.data('group1');
+        var group2 = button.data('group2');
+        var group3 = button.data('group3');
         var customId = button.data('customid');
         var name = button.data('name');
         var shortName = button.data('shortname');
@@ -424,7 +460,9 @@
         // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
         var modal = $(this);
         modal.find('#inputIdEdit').val(id);
-        modal.find('#inputGroupEdit').val(group);
+        modal.find('#inputGroupEdit1').val(group1);
+        modal.find('#inputGroupEdit2').val(group2);
+        modal.find('#inputGroupEdit3').val(group3);
         modal.find('#inputCustomIdEdit').val(customId);
         modal.find('#inputNameEdit').val(name);
         modal.find('#inputShortNameEdit').val(shortName);

@@ -57,6 +57,11 @@
           </dl>
 
           <dl class="dl-horizontal">
+            <dt>Custom id</dt>
+            <dd><?= $customer["custom_id"] ?></dd>
+          </dl>
+
+          <dl class="dl-horizontal">
             <dt><?= s2("customer_name")?></dt>
             <dd><?= $customer["name"] ?></dd>
           </dl>
