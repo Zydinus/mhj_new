@@ -31,7 +31,7 @@ if ($uploadOk == 0) {
 
 <?php
 $sql = "INSERT INTO customers (
-        `short_name`, `title`, `name`, `first_contact_date`,
+        `custom_id`, `short_name`, `title`, `name`, `first_contact_date`,
         `contact_name`, `tax_vat`, `address_text`, `region`,
         `province`, `district`, `zip`, `distance`,
         `tel`, `fax`, `mobile_tel`, `email`,
@@ -47,12 +47,12 @@ if ($file) {
     $line = fgets($file);
     $entry = explode(",", $line);
     $sql_value .= "(";
-    $sql_value .= "'$entry[0]','$entry[1]','$entry[2]','$entry[3]',";
-    $sql_value .= "'$entry[4]','$entry[5]','$entry[6]','$entry[7]',";
-    $sql_value .= "'$entry[8]','$entry[9]','$entry[10]',$entry[11],";
-    $sql_value .= "'$entry[12]','$entry[13]','$entry[14]','$entry[15]',";
-    $sql_value .= "'$entry[16]','$entry[17]','$entry[18]',";
-    $sql_value .= "$entry[19],$entry[20],";
+    $sql_value .= "'$entry[0]','$entry[1]','$entry[2]','$entry[3]','$entry[4]',";
+    $sql_value .= "'$entry[5]','$entry[6]','$entry[7]','$entry[8]',";
+    $sql_value .= "'$entry[9]','$entry[10]','$entry[11]',$entry[12],";
+    $sql_value .= "'$entry[13]','$entry[14]','$entry[15]','$entry[16]',";
+    $sql_value .= "'$entry[17]','$entry[18]','$entry[19]',";
+    $sql_value .= "$entry[20],$entry[21],";
     $sql_value .= "now(),now()";
     $sql_value .= "), ";
     echo $line. "<br />";

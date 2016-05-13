@@ -5,11 +5,14 @@
     <title>Migration tool</title>
   </head>
   <body>
-    <div class="">
+    <p class="">
       <a href="migrate_customer.php">Migrate Customer</a>
-    </div>
-    <div class="">
+    </p>
+    <p class="">
       <a href="migrate_product.php">Migrate Product</a>
-    </div>
+    </p>
+    <p class="">
+      <a href="migrate_sale.php">Migrate Sale</a>
+    </p>
   </body>
 </html>
