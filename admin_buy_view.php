@@ -23,8 +23,114 @@
     <?php include "include/include_body.php" ?>
     <div class="container">
       <h1>
-        <?= s2("buy_dashboard"); ?>
+        Buy Info
       </h1>
+
+      <div class="row">
+        <!-- Button trigger change customer modal -->
+        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#ChangeCustomerModal">
+          Change customer
+        </button>
+
+        <!-- change customer modal -->
+        <div class="modal fade" id="ChangeCustomerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Change Customer</h4>
+              </div>
+              <div class="modal-body">
+                <div class="form-group has-warning">
+                  <label for="customerSearch">customerSearch</label>
+                  <input type="text" id="customerSearch" class="form-control" autocomplete="off">
+                </div>
+
+                <script type="text/javascript">
+                  var selectedCustomer;
+                  var $inputCustomer = $('#customerSearch');
+                  var customers = <?= json_encode(getAllCustomersRenamed($conn)) ?>;
+                  console.log(customers);
+                  // $input.typeahead({source:[{id: "someId1", name: "Display name 1"},
+                  //           {id: "someId2", name: "Display name 2"}],
+                  //           autoSelect: true});
+                  $inputCustomer.typeahead({source: customers, autoSelect: true});
+                  $inputCustomer.change(function() {
+                    var current = $inputCustomer.typeahead("getActive");
+                    if (current) {
+                      // Some item from your model is active!
+                      if (current.name == $inputCustomer.val()) {
+                          // This means the exact match is found. Use toLowerCase() if you want case insensitive match.
+                          console.log($inputCustomer.val());
+                          console.log(current);
+
+                          fillCustomer(current);
+                      } else {
+                          // This means it is only a partial match, you can either add a new item
+                          // or take the active if you don't want new items
+                          selectedCustomer = null;
+                      }
+                    } else {
+                      // Nothing is active so it is a new value (or maybe empty value)
+                      selectedCustomer = null;
+                    }
+                  });
+
+                  function fillCustomer(customer) {
+                    selectedCustomer = customer;
+                    $("#customerName").html(customer.customer_name);
+
+
+                  }
+
+                  function transferCustomer() {
+                    if (typeof selectedCustomer == 'undefined') {
+                      return;
+                    }
+
+                    // ajax
+                    $("#btnTransferCustomer").prop('disabled', true);
+
+                    var data = {
+                      buy_id : "<?= $_GET["id"]?>",
+                      new_customer_id : selectedCustomer.id
+                    };
+
+                    var jqxhr = $.ajax({
+                      method: "POST",
+                      url: "admin_buy_transfer_customer.php",
+                      data: data
+                    })
+                    .done(function(data) {
+                      // alert( "success" );
+                      console.log(data);
+
+                      if (data.result===false) {
+                        return;
+                      }
+
+                      // refresh
+                      location.reload();
+                    })
+                    .fail(function() {
+                      alert( "error" );
+                    });
+                  }
+                </script>
+
+                <dl class="dl-horizontal">
+                  <dt>Name</dt>
+                  <dd id="customerName"></dd>
+                </dl>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="btnTransferCustomer" onclick="transferCustomer()">Save change</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div class="row">
         <div class="col-lg-6">

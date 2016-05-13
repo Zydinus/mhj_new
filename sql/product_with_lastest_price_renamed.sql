@@ -1,6 +1,6 @@
 SELECT
-    `id`, `category_id`, `name` as product_name, `short_name` as name, 
-    `custom_id`, `unit`, `weight`, `product_group`,
+    `id`, `category_id`, `name` as product_name, `short_name` as name,
+    `custom_id`, `unit`, `weight`, `product_group_1`, `product_group_2`, `product_group_3`,
     `created_at`, `updated_at`,
     (SELECT
             price
