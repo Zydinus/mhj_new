@@ -22,7 +22,7 @@
 
       function drawSaleChart() {
         var data = google.visualization.arrayToDataTable([
-          ['Date', 'Total'],
+          ['Date', 'Total Sale'],
           <?php
           foreach ($sales as $sale) {
             echo "['$sale[sale_created_at]',$sale[total]],";
@@ -83,18 +83,19 @@
       </div>
 
       <div class="row">
-        <h3>Total Chart</h3>
+        <h3>Total Sale Chart</h3>
         <div id="sale_chart_div"></div>
       </div>
 
       <div class="row">
-        <h3>Total Table</h3>
+        <h3>Total Sale Table</h3>
         <div class="col-lg-6">
           <table class="table table-hover table-striped">
             <thead>
               <tr>
                 <th>Date</th>
                 <th>Total</th>
+                <th>Info</th>
               </tr>
             </thead>
             <tbody>
@@ -105,6 +106,11 @@
                 <tr>
                   <td><?= $sale["sale_created_at"]?></td>
                   <td><?= $sale["total"]?></td>
+                  <td>
+                    <a href="admin_sale_view.php?id=<?= $sale["sale_id"]?>" role="button" class="btn btn-info btn-xs">
+                      iii
+                    </a>
+                  </td>
                 </tr>
                 <?php
               }

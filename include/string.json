@@ -72,5 +72,7 @@
   "buy_dashboard":{"en":"Buy Dashboard","th":"Buy Dashboard"},
   "buy_new":{"en":"New Buy","th":"รายการซื้อใหม่"},
   "buy_form":{"en":"Buy Form","th":"แบบรายการซื้อ"},
-  "buy_system":{"en":"Buy System","th":"ระบบซื้อ"}
+  "buy_system":{"en":"Buy System","th":"ระบบซื้อ"},
+  "sale_report":{"en":"Sale Report","th":"Sale Report"},
+  "buy_report":{"en":"Buy Report","th":"Buy Report"}
 }

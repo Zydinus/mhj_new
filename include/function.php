@@ -271,6 +271,22 @@
     return $sales;
   }
 
+  function getAllSales($conn) {
+    $sales = [];
+
+    $sql = "SELECT * FROM sales_with_total_and_is_edited_view
+      ORDER BY sale_id DESC";
+
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+      // output data of each row
+      while($row = $result->fetch_assoc()) {
+        $sales[] = $row;
+      }
+    }
+    return $sales;
+  }
+
   function getSalesWithCustomerId($conn, $customer_id) {
     $sales = [];
 
@@ -340,6 +356,22 @@
 
     $sql = "SELECT * FROM buyes_with_total_and_is_edited_view
       WHERE buy_created_at BETWEEN '$begin_date 0:0:0' AND '$end_date 23:59:59'
+      ORDER BY buy_id DESC";
+
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+      // output data of each row
+      while($row = $result->fetch_assoc()) {
+        $buyes[] = $row;
+      }
+    }
+    return $buyes;
+  }
+
+  function getAllBuyes($conn) {
+    $buyes = [];
+
+    $sql = "SELECT * FROM buyes_with_total_and_is_edited_view
       ORDER BY buy_id DESC";
 
     $result = $conn->query($sql);
